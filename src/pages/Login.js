@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fetchToken } from '../actions';
 
 class Login extends Component {
   constructor() {
@@ -11,11 +14,18 @@ class Login extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.toPlay = this.toPlay.bind(this);
   }
 
   handleChange({ target }) {
     const { name, value } = target;
     this.setState({ [name]: value });
+  }
+
+  toPlay() {
+    const { tokenAPI, history } = this.props;
+    tokenAPI();
+    history.push('/game');
   }
 
   render() {
@@ -49,6 +59,7 @@ class Login extends Component {
               type="button"
               data-testid="btn-play"
               disabled={ !(name && email) }
+              onClick={ this.toPlay }
             >
               Jogar
             </button>
@@ -67,4 +78,19 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapDispatchToProps = (dispatch) => ({
+  tokenAPI: () => dispatch(fetchToken()),
+});
+
+const mapStateToProps = (state) => ({
+  token: state.tokenReducer.token,
+});
+
+Login.propTypes = {
+  tokenAPI: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
