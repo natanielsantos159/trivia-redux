@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchTriviaQuestions } from '../actions';
+import Header from '../components/Header';
 
 class Game extends Component {
   componentDidMount() {
@@ -29,16 +30,21 @@ class Game extends Component {
 
     return (
       <section>
-        <span data-testid="question-category">
-          { results ? `Category: ${results[0].category} ` : 'Category: ' }
-        </span>
-        <br />
-        <span data-testid="question-text">
-          { results ? `Question: ${results[0].question} ` : 'Question: ' }
-        </span>
-        <br />
         <section>
-          { results ? questions.map((eachQuestion) => eachQuestion).sort() : '' }
+          <Header />
+        </section>
+        <section>
+          <span data-testid="question-category">
+            { results ? `Category: ${results[0].category} ` : 'Category: ' }
+          </span>
+          <br />
+          <span data-testid="question-text">
+            { results ? `Question: ${results[0].question} ` : 'Question: ' }
+          </span>
+          <br />
+          <section>
+            { results ? questions.map((eachQuestion) => eachQuestion).sort() : '' }
+          </section>
         </section>
       </section>
     );

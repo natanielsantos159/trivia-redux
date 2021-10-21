@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchToken } from '../actions';
+import { fetchToken, setUserLogin } from '../actions';
 
 class Login extends Component {
   constructor() {
@@ -23,8 +23,10 @@ class Login extends Component {
   }
 
   toPlay() {
-    const { tokenAPI, history } = this.props;
+    const { tokenAPI, history, setUser } = this.props;
+    const { email, name } = this.state;
     tokenAPI();
+    setUser({ email, name });
     history.push('/game');
   }
 
@@ -80,6 +82,7 @@ class Login extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   tokenAPI: () => dispatch(fetchToken()),
+  setUser: (state) => dispatch(setUserLogin(state)),
 });
 
 const mapStateToProps = (state) => ({
