@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchTriviaQuestions } from '../actions';
+import '../styles/Game.css';
 
 class Game extends Component {
   componentDidMount() {
@@ -10,18 +11,39 @@ class Game extends Component {
     triviaApi();
   }
 
+  handleAnswerClick() {
+    const alreadClicked = document.querySelector('.clicked') !== null;
+
+    if (!alreadClicked) {
+      const answers = document.querySelectorAll('.answer');
+      [...answers].forEach((answer) => answer.classList.add('clicked'));
+    }
+  }
+
   render() {
     const { triviaReturn } = this.props;
     const { results } = triviaReturn;
     const questions = [];
     if (results) {
       questions.push(
-        <button type="button" data-testid="correct-answer" key="4">
+        <button
+          type="button"
+          data-testid="correct-answer"
+          className="answer correct"
+          key="4"
+          onClick={ this.handleAnswerClick }
+        >
           { results[0].correct_answer }
         </button>,
         results[0].incorrect_answers
           .map((incorrect, index) => (
-            <button type="button" key={ index } data-testid={ `wrong-answer-${index}` }>
+            <button
+              type="button"
+              className="answer incorrect"
+              key={ index }
+              data-testid={ `wrong-answer-${index}` }
+              onClick={ this.handleAnswerClick }
+            >
               { incorrect }
             </button>)),
       );
