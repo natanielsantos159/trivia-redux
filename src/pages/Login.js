@@ -14,6 +14,7 @@ class Login extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.toPlay = this.toPlay.bind(this);
   }
 
   handleChange({ target }) {
@@ -22,8 +23,9 @@ class Login extends Component {
   }
 
   toPlay() {
-    const { tokenAPI } = this.props;
+    const { tokenAPI, history } = this.props;
     tokenAPI();
+    history.push('/game');
   }
 
   render() {
@@ -80,4 +82,15 @@ const mapDispatchToProps = (dispatch) => ({
   tokenAPI: () => dispatch(fetchToken()),
 });
 
-export default connect(null, mapDispatchToProps)(Login);
+const mapStateToProps = (state) => ({
+  token: state.tokenReducer.token,
+});
+
+Login.propTypes = {
+  tokenAPI: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
