@@ -22,12 +22,12 @@ class Login extends Component {
     this.setState({ [name]: value });
   }
 
-  toPlay() {
+  async toPlay() {
     const { tokenAPI, history, setUser } = this.props;
     const { email, name } = this.state;
-    tokenAPI();
-    setUser({ email, name });
-    history.push('/game');
+    await tokenAPI();
+    await setUser({ email, name })
+      .then(history.push('/game'));
   }
 
   render() {
