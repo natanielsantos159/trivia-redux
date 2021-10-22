@@ -11,9 +11,9 @@ export default class QuestionCard extends Component {
           </span>
         </section>
         <br />
-        <span data-testid="question-text">
+        <div data-testid="question-text" className="question-text">
           { results ? `Question: ${results[counter].question} ` : 'Question: ' }
-        </span>
+        </div>
         <br />
       </section>
     );

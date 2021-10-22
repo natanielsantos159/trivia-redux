@@ -1,4 +1,5 @@
 .correct.clicked {
+  background: rgba(100, 180, 99, 1);
   border: 3px solid rgb(6, 240, 15);
 }
 
@@ -8,4 +9,22 @@
 
 .content-container {
   display: flex;
+  justify-content: space-evenly;
+}
+
+.answer {
+  background: #b0235f;
+  border: none;
+  border-radius: 11px;
+  box-shadow: 1px 4px 3px 2px rgb(0 0 0 / 25%);
+  font-size: 15px;
+  font-weight: 800;
+  height: 40px;
+  margin-bottom: 15px;
+  width: 300px;
+}
+
+.answers-container {
+  display: flex;
+  flex-direction: column;
 }

@@ -1,9 +1,11 @@
 header {
+  align-items: center;
   background: #562c48;
   border: 1.7px solid white;
   border-radius: 16px;
   display: flex;
   font-weight: 800;
+  justify-content: space-between;
   padding: 5px;
   width: 400px;
 }
@@ -19,7 +21,7 @@ header * {
 
 .top-container {
   align-items: center;
-  margin: 60px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  margin: 60px;
 }

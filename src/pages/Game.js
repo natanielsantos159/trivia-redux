@@ -87,12 +87,11 @@ class Game extends Component {
         <Header />
         <section className="content-container">
           <QuestionCard results={ results } counter={ counter } />
-          <section>
+          <section className="answers-container">
             { answers.map((eachAnswer) => eachAnswer)}
           </section>
         </section>
       </section>
-
     );
   }
 }
