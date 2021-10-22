@@ -16,14 +16,50 @@
   background: #b0235f;
   border: none;
   border-radius: 11px;
-  box-shadow: 1px 4px 3px 2px rgb(0 0 0 / 25%);
+  box-shadow: 1px 4px 3px 2px rgb(0 0 0 / 20%);
   cursor: pointer;
   font-size: 15px;
   font-weight: 800;
   height: 40px;
   margin-bottom: 15px;
+  padding: 5px;
   transition: all 1s;
   width: 300px;
+}
+
+.answer:nth-of-type( 1 ) {
+  animation: move 600ms;
+}
+
+.answer:nth-of-type( 2 ) {
+  animation: move 600ms;
+  animation-delay: 200ms;
+  animation-fill-mode: backwards;
+}
+
+.answer:nth-of-type( 3 ) {
+  animation: move 600ms;
+  animation-delay: 300ms;
+  animation-fill-mode: backwards;
+}
+
+.answer:nth-of-type( 4 ) {
+  animation: move 600ms;
+  animation-delay: 400ms;
+  animation-fill-mode: backwards;
+}
+
+@keyframes move {
+
+  from {
+    opacity: 0;
+    transform: translateX(35%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .answer:hover {
@@ -34,5 +70,5 @@
 .answers-container {
   display: flex;
   flex-direction: column;
-  min-width: 300px;
+  min-width: 400px;
 }

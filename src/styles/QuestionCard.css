@@ -1,4 +1,5 @@
 .question-card {
+  animation: moveToRight 600ms;
   background: #562c48;
   border: 1.8px solid white;
   border-radius: 16px;
@@ -27,4 +28,17 @@
 
 .question-text {
   margin: 10px;
+}
+
+@keyframes moveToRight {
+
+  from {
+    opacity: 0;
+    transform: translateX(-35%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
