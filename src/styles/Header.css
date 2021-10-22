@@ -14,14 +14,25 @@ header * {
   background: #562c48;
 }
 
+.user-info {
+  align-items: center;
+  display: flex;
+}
+
 .header-profile-picture {
   border-radius: 50%;
   height: 45px;
+  margin-left: 6px;
+  margin-right: 6px;
 }
 
 .top-container {
   align-items: center;
   display: flex;
   justify-content: space-evenly;
-  margin: 60px;
+  margin: 60px 40px 60px 60px;
+}
+
+.player-score {
+  margin-right: 7px;
 }

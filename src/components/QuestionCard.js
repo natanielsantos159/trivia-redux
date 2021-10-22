@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class QuestionCard extends Component {
   render() {
@@ -19,3 +20,12 @@ export default class QuestionCard extends Component {
     );
   }
 }
+
+QuestionCard.propTypes = {
+  results: PropTypes.arrayOf(PropTypes.object),
+  counter: PropTypes.number.isRequired,
+};
+
+QuestionCard.defaultProps = {
+  results: undefined,
+};

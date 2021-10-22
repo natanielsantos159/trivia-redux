@@ -13,4 +13,5 @@ html {
 
 .trivia-logo {
   height: 90px;
+  min-width: 261px;
 }

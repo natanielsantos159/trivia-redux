@@ -34,18 +34,20 @@ class Header extends Component {
       <section className="top-container">
         <img className="trivia-logo" src={ logo } alt="Trivia Logo" />
         <header>
-          <img
-            data-testid="header-profile-picture"
-            className="header-profile-picture"
-            src={ profilePicture }
-            alt="profile"
-          />
-          <span className="player-name">
-            Jogador:
-            {' '}
-            <span data-testid="header-player-name">{ name }</span>
-          </span>
-          <span>
+          <div className="user-info">
+            <img
+              data-testid="header-profile-picture"
+              className="header-profile-picture"
+              src={ profilePicture }
+              alt="profile"
+            />
+            <span className="player-name">
+              Jogador:
+              {' '}
+              <span data-testid="header-player-name">{ name }</span>
+            </span>
+          </div>
+          <span className="player-score">
             Pontos:
             {' '}
             <span data-testid="header-score">0</span>
