@@ -5,3 +5,7 @@
 .incorrect.clicked {
   border: 3px solid red;
 }
+
+.content-container {
+  display: flex;
+}

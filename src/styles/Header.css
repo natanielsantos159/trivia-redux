@@ -1,0 +1,25 @@
+header {
+  background: #562c48;
+  border: 1.7px solid white;
+  border-radius: 16px;
+  display: flex;
+  font-weight: 800;
+  padding: 5px;
+  width: 400px;
+}
+
+header * {
+  background: #562c48;
+}
+
+.header-profile-picture {
+  border-radius: 50%;
+  height: 45px;
+}
+
+.top-container {
+  align-items: center;
+  margin: 60px;
+  display: flex;
+  justify-content: space-between;
+}
