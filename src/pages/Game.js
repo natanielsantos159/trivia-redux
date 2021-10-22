@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchTriviaQuestions } from '../actions';
+import '../styles/Game.css';
 import Header from '../components/Header';
 
 class Game extends Component {
@@ -20,6 +21,15 @@ class Game extends Component {
     const { triviaApi } = this.props;
 
     triviaApi();
+  }
+
+  handleAnswerClick() {
+    const alreadClicked = document.querySelector('.clicked') !== null;
+
+    if (!alreadClicked) {
+      const answers = document.querySelectorAll('.answer');
+      [...answers].forEach((answer) => answer.classList.add('clicked'));
+    }
   }
 
   handleCounter() {
@@ -47,12 +57,24 @@ class Game extends Component {
     const questions = [];
     if (results) {
       questions.push(
-        <button type="button" key="4" data-testid="correct-answer">
+        <button
+          type="button"
+          data-testid="correct-answer"
+          className="answer correct"
+          key="4"
+          onClick={ this.handleAnswerClick }
+        >
           { results[counter].correct_answer }
         </button>,
         results[counter].incorrect_answers
           .map((incorrect, index) => (
-            <button type="button" key={ index } data-testid={ `wrong-answer-${index}` }>
+            <button
+              type="button"
+              className="answer incorrect"
+              key={ index }
+              data-testid={ `wrong-answer-${index}` }
+              onClick={ this.handleAnswerClick }
+            >
               { incorrect }
             </button>)),
       ); this.shuffleArray(questions);

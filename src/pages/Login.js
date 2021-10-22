@@ -26,8 +26,8 @@ class Login extends Component {
     const { tokenAPI, history, setUser } = this.props;
     const { email, name } = this.state;
     await tokenAPI();
-    await setUser({ email, name })
-      .then(history.push('/game'));
+    setUser({ email, name });
+    history.push('/game');
   }
 
   render() {
