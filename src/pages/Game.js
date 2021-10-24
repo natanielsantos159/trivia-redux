@@ -11,16 +11,40 @@ class Game extends Component {
 
     this.state = {
       counter: 0,
+      timer: 30,
     };
 
     this.handleCounter = this.handleCounter.bind(this);
     this.shuffleArray = this.shuffleArray.bind(this);
+    this.handleQuestionTimer = this.handleQuestionTimer.bind(this);
+    this.handleOrganizeAnswers = this.handleOrganizeAnswers.bind(this);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     const { triviaApi } = this.props;
 
     triviaApi();
+    this.handleQuestionTimer();
+  }
+
+  componentWillUnmount() {
+    const { timer } = this.state;
+    clearInterval(timer);
+  }
+
+  handleQuestionTimer() {
+    const interval = 1000;
+    const thirty = 30;
+    let timer = thirty;
+    setInterval(() => {
+      if (timer > 0) {
+        timer -= 1;
+        this.setState({
+          timer,
+        });
+      }
+    }, interval);
+    return timer;
   }
 
   handleAnswerClick() {
@@ -39,30 +63,36 @@ class Game extends Component {
   }
 
   // Função de embaralhar array retirada do link: https://www.horadecodar.com.br/2021/05/10/como-embaralhar-um-array-em-javascript-shuffle/.
-  shuffleArray(arr) {
-    // Loop em todos os elementos
-    for (let i = arr.length - 1; i > 0; i -= 1) {
-      // Escolhendo elemento aleatório
-      const j = Math.floor(Math.random() * (i + 1));
-      // Reposicionando elemento
-      [arr[i], arr[j]] = [arr[j], arr[i]];
+  shuffleArray(array) {
+    let currentIndex = array.length; let
+      randomIndex;
+
+    // While there remain elements to shuffle...
+    while (currentIndex !== 0) {
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
     }
-    // Retornando array com aleatoriedade
-    return arr;
+    return array;
   }
 
-  render() {
-    const { counter } = this.state;
+  handleOrganizeAnswers() {
+    const { counter, timer } = this.state;
     const { triviaReturn: { results } } = this.props;
-    const questions = [];
+    const answers = [];
     if (results) {
-      questions.push(
+      answers.push(
         <button
           type="button"
           data-testid="correct-answer"
           className="answer correct"
           key="4"
           onClick={ this.handleAnswerClick }
+          disabled={ timer === 0 }
         >
           { results[counter].correct_answer }
         </button>,
@@ -74,17 +104,22 @@ class Game extends Component {
               key={ index }
               data-testid={ `wrong-answer-${index}` }
               onClick={ this.handleAnswerClick }
+              disabled={ timer === 0 }
             >
               { incorrect }
             </button>)),
-      ); this.shuffleArray(questions);
+      );
     }
+    return answers;
+  }
+
+  render() {
+    const { counter, timer } = this.state;
+    const { triviaReturn: { results } } = this.props;
 
     return (
       <section>
-        <section>
-          <Header />
-        </section>
+        <Header />
         <section>
           <span data-testid="question-category">
             { results ? `Category: ${results[counter].category} ` : 'Category: ' }
@@ -95,9 +130,10 @@ class Game extends Component {
           </span>
           <br />
           <section>
-            { questions.map((eachQuestion) => eachQuestion)}
+            { this.handleOrganizeAnswers().map((eachAnswer) => eachAnswer)}
           </section>
         </section>
+        <span>{ `Tempo restante: ${timer} segundos` }</span>
       </section>
     );
   }
