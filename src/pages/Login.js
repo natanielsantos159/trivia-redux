@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchToken, setUserLogin } from '../actions';
 import '../styles/Login.css';
 import logo from '../images/trivia.png';
+import SettingsButton from '../components/SettingsButton';
 
 class Login extends Component {
   constructor() {
@@ -33,11 +34,11 @@ class Login extends Component {
 
   render() {
     const { email, name } = this.state;
-
     return (
       <>
         <img className="login-trivia-logo" src={ logo } alt="Trivia Logo" />
         <section className="login-section">
+          <SettingsButton />
           <form>
             <label htmlFor="emailInput">
               E-mail:
@@ -64,6 +65,7 @@ class Login extends Component {
             <button
               type="button"
               data-testid="btn-play"
+              className="btn-play"
               disabled={ !(name && email) }
               onClick={ this.toPlay }
             >

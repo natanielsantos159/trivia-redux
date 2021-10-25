@@ -46,7 +46,7 @@ input:focus {
   border-style: inset;
 }
 
-.login-section button {
+.btn-play {
   background-color: #b0235f;
   border-radius: 5px;
   border-style: none;
@@ -54,11 +54,11 @@ input:focus {
   cursor: pointer;
   font-weight: 700;
   height: 35px;
-  margin: 30px auto auto;
+  margin: 30px auto;
   width: 190px;
 }
 
-.login-section button:hover {
+.btn-play:hover {
   background-color: #961a50;
   transition: all 0.4s;
 }
@@ -86,4 +86,8 @@ input:focus {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.login-section a {
+  align-self: self-end;
 }
