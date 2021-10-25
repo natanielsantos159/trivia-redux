@@ -35,41 +35,43 @@ class Login extends Component {
     const { email, name } = this.state;
 
     return (
-      <section className="login-section">
+      <>
         <img className="login-trivia-logo" src={ logo } alt="Trivia Logo" />
-        <form>
-          <label htmlFor="emailInput">
-            E-mail:
-            <input
-              id="emailInput"
-              name="email"
-              type="email"
-              data-testid="input-gravatar-email"
-              onChange={ this.handleChange }
-              value={ email }
-            />
-          </label>
-          <label htmlFor="nameInput">
-            Name:
-            <input
-              id="nameInput"
-              name="name"
-              type="text"
-              data-testid="input-player-name"
-              onChange={ this.handleChange }
-              value={ name }
-            />
-          </label>
-          <button
-            type="button"
-            data-testid="btn-play"
-            disabled={ !(name && email) }
-            onClick={ this.toPlay }
-          >
-            Jogar
-          </button>
-        </form>
-      </section>
+        <section className="login-section">
+          <form>
+            <label htmlFor="emailInput">
+              E-mail:
+              <input
+                id="emailInput"
+                name="email"
+                type="email"
+                data-testid="input-gravatar-email"
+                onChange={ this.handleChange }
+                value={ email }
+              />
+            </label>
+            <label htmlFor="nameInput">
+              Name:
+              <input
+                id="nameInput"
+                name="name"
+                type="text"
+                data-testid="input-player-name"
+                onChange={ this.handleChange }
+                value={ name }
+              />
+            </label>
+            <button
+              type="button"
+              data-testid="btn-play"
+              disabled={ !(name && email) }
+              onClick={ this.toPlay }
+            >
+              Jogar
+            </button>
+          </form>
+        </section>
+      </>
     );
   }
 }
