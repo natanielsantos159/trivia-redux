@@ -2,6 +2,10 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import md5 from 'crypto-js/md5';
+import '../styles/Header.css';
+import { Link } from 'react-router-dom';
+import logo from '../images/trivia.png';
+import SettingsButton from './SettingsButton';
 
 class Header extends Component {
   constructor() {
@@ -29,15 +33,32 @@ class Header extends Component {
     const { name } = this.props;
     const { profilePicture } = this.state;
     return (
-      <header>
-        <img
-          data-testid="header-profile-picture"
-          src={ profilePicture }
-          alt="profile"
-        />
-        <div data-testid="header-player-name">{ name }</div>
-        <span data-testid="header-score">0</span>
-      </header>
+      <section className="top-container">
+        <Link to="/">
+          <img className="trivia-logo" src={ logo } alt="Trivia Logo" />
+        </Link>
+        <header>
+          <div className="user-info">
+            <img
+              data-testid="header-profile-picture"
+              className="header-profile-picture"
+              src={ profilePicture }
+              alt="profile"
+            />
+            <span className="player-name">
+              Jogador:
+              {' '}
+              <span data-testid="header-player-name">{ name }</span>
+            </span>
+          </div>
+          <span className="player-score">
+            Pontos:
+            {' '}
+            <span data-testid="header-score">0</span>
+          </span>
+          <SettingsButton />
+        </header>
+      </section>
     );
   }
 }
