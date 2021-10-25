@@ -1,0 +1,93 @@
+.login-section {
+  align-items: center;
+  animation: appear 500ms;
+  background: #562c48;
+  border-radius: 10px;
+  box-shadow: 0 1px 12px 0 black;
+  display: flex;
+  flex-direction: column;
+  height: 30vh;
+  justify-content: center;
+  margin: 30vh auto 9vh;
+  padding: 40px;
+  width: 60vh;
+  z-index: 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  height: 30px;
+  margin: 20px 30px;
+}
+
+input {
+  background-color: #e1e5e6;
+  border-radius: 5px;
+  border-style: hidden;
+  color: black;
+  height: 30px;
+  margin: 5px;
+  outline: transparent;
+  width: 300px;
+}
+
+label input {
+  display: block;
+}
+
+input:focus {
+  border-color: black;
+  border-style: inset;
+}
+
+.btn-play {
+  background-color: #b0235f;
+  border-radius: 5px;
+  border-style: none;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+  height: 35px;
+  margin: 30px auto;
+  width: 190px;
+}
+
+.btn-play:hover {
+  background-color: #961a50;
+  transition: all 0.4s;
+}
+
+.login-trivia-logo {
+  height: 90px;
+  left: 0;
+  margin: auto;
+  min-width: 261px;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 23vh;
+  z-index: 1;
+}
+
+@keyframes appear {
+
+  from {
+    opacity: 0;
+    transform: translateY(35%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-section a {
+  align-self: self-end;
+}
