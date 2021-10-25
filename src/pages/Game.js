@@ -6,32 +6,69 @@ import '../styles/Game.css';
 import Header from '../components/Header';
 import QuestionCard from '../components/QuestionCard';
 import '../styles/QuestionCard.css';
+import Answers from '../components/Answers';
 
 class Game extends Component {
   constructor() {
     super();
 
     this.state = {
+      answers: [],
       counter: 0,
       timer: 30,
     };
 
     this.handleCounter = this.handleCounter.bind(this);
     this.shuffleArray = this.shuffleArray.bind(this);
+    this.getAnswers = this.getAnswers.bind(this);
     this.handleQuestionTimer = this.handleQuestionTimer.bind(this);
-    this.handleOrganizeAnswers = this.handleOrganizeAnswers.bind(this);
   }
 
   componentDidMount() {
     const { triviaApi } = this.props;
 
-    triviaApi();
+    triviaApi()
+      .then(() => this.getAnswers());
     this.handleQuestionTimer();
   }
 
   componentWillUnmount() {
     const { timer } = this.state;
     clearInterval(timer);
+  }
+
+  getAnswers() {
+    const { triviaReturn: { results } } = this.props;
+    console.log(results)
+    const answers = results.reduce((acc, result) => {
+      const incorrectAnswers = result.incorrect_answers.map((answer) => ({ answer,
+        correct: false }));
+      const currAnswers = [{ answer: result.correct_answer, correct: true },
+        ...incorrectAnswers];
+      const shuffledArray = this.shuffleArray(currAnswers);
+      acc.push(shuffledArray);
+      return acc;
+    }, []);
+
+    this.setState({ answers });
+  }
+
+  // Função de embaralhar array retirada do link: https://www.horadecodar.com.br/2021/05/10/como-embaralhar-um-array-em-javascript-shuffle/.
+  shuffleArray(array) {
+    let currentIndex = array.length;
+    let randomIndex;
+
+    // While there remain elements to shuffle...
+    while (currentIndex !== 0) {
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+    return array;
   }
 
   handleQuestionTimer() {
@@ -64,71 +101,30 @@ class Game extends Component {
     }));
   }
 
-  // Função de embaralhar array retirada do link: https://www.horadecodar.com.br/2021/05/10/como-embaralhar-um-array-em-javascript-shuffle/.
-  shuffleArray(array) {
-    let currentIndex = array.length; let
-      randomIndex;
-
-    // While there remain elements to shuffle...
-    while (currentIndex !== 0) {
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-
-      // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
-    }
-    return array;
-  }
-
-  handleOrganizeAnswers() {
-    const { counter, timer } = this.state;
-    const { triviaReturn: { results } } = this.props;
-    const answers = [];
-    if (results) {
-      answers.push(
-        <button
-          type="button"
-          data-testid="correct-answer"
-          className="answer correct"
-          key="4"
-          onClick={ this.handleAnswerClick }
-          disabled={ timer === 0 }
-        >
-          { results[counter].correct_answer }
-        </button>,
-        results[counter].incorrect_answers
-          .map((incorrect, index) => (
-            <button
-              type="button"
-              className="answer incorrect"
-              key={ index }
-              data-testid={ `wrong-answer-${index}` }
-              onClick={ this.handleAnswerClick }
-              disabled={ timer === 0 }
-            >
-              { incorrect }
-            </button>)),
-      );
-    }
-    return answers;
-  }
-
   render() {
-    const { counter, timer } = this.state;
+    const { counter, timer, answers } = this.state;
     const { triviaReturn: { results } } = this.props;
-
     return (
       <section>
         <Header />
         <section className="content-container">
-          <QuestionCard results={ results } counter={ counter } />
-          <section className="answers-container">
-            { this.handleOrganizeAnswers().map((eachAnswer) => eachAnswer) }
-          </section>
+          <QuestionCard results={ results ? results[counter] : [] } />
+          <Answers
+            answers={ answers[counter] }
+            disabled={ timer === 0 }
+            onClick={ this.handleAnswerClick }
+          />
         </section>
-        <span>{ `Tempo restante: ${timer} segundos` }</span>
+        <section className="bottom-container">
+          <span className="timer">{ `Tempo restante: ${timer} segundos` }</span>
+          <button
+            type="button"
+            className="next-question-btn"
+            onClick={ this.handleCounter }
+          >
+            Próxima
+          </button>
+        </section>
       </section>
     );
   }
