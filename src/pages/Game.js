@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { fetchTriviaQuestions } from '../actions';
 import '../styles/Game.css';
 import Header from '../components/Header';
+import QuestionCard from '../components/QuestionCard';
+import '../styles/QuestionCard.css';
 
 class Game extends Component {
   constructor() {
@@ -54,9 +56,9 @@ class Game extends Component {
   render() {
     const { counter } = this.state;
     const { triviaReturn: { results } } = this.props;
-    const questions = [];
+    const answers = [];
     if (results) {
-      questions.push(
+      answers.push(
         <button
           type="button"
           data-testid="correct-answer"
@@ -77,25 +79,16 @@ class Game extends Component {
             >
               { incorrect }
             </button>)),
-      ); this.shuffleArray(questions);
+      ); this.shuffleArray(answers);
     }
 
     return (
       <section>
-        <section>
-          <Header />
-        </section>
-        <section>
-          <span data-testid="question-category">
-            { results ? `Category: ${results[counter].category} ` : 'Category: ' }
-          </span>
-          <br />
-          <span data-testid="question-text">
-            { results ? `Question: ${results[counter].question} ` : 'Question: ' }
-          </span>
-          <br />
-          <section>
-            { questions.map((eachQuestion) => eachQuestion)}
+        <Header />
+        <section className="content-container">
+          <QuestionCard results={ results } counter={ counter } />
+          <section className="answers-container">
+            { answers.map((eachAnswer) => eachAnswer)}
           </section>
         </section>
       </section>
