@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import md5 from 'crypto-js/md5';
 import '../styles/Header.css';
+import { Link } from 'react-router-dom';
 import logo from '../images/trivia.png';
 
 class Header extends Component {
@@ -53,6 +54,14 @@ class Header extends Component {
             <span data-testid="header-score">0</span>
           </span>
         </header>
+        <Link to="/settings">
+          <button
+            type="button"
+            data-testid="btn-settings"
+          >
+            Configurações
+          </button>
+        </Link>
       </section>
     );
   }

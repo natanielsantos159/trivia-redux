@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchToken, setUserLogin } from '../actions';
+import '../styles/Login.css';
+import logo from '../images/trivia.png';
 
 class Login extends Component {
   constructor() {
@@ -34,7 +35,8 @@ class Login extends Component {
     const { email, name } = this.state;
 
     return (
-      <section className="App">
+      <section className="login-section">
+        <img className="login-trivia-logo" src={ logo } alt="Trivia Logo" />
         <form>
           <label htmlFor="emailInput">
             E-mail:
@@ -57,23 +59,15 @@ class Login extends Component {
               onChange={ this.handleChange }
               value={ name }
             />
-            <button
-              type="button"
-              data-testid="btn-play"
-              disabled={ !(name && email) }
-              onClick={ this.toPlay }
-            >
-              Jogar
-            </button>
           </label>
-          <Link to="/settings">
-            <button
-              type="button"
-              data-testid="btn-settings"
-            >
-              Configurações
-            </button>
-          </Link>
+          <button
+            type="button"
+            data-testid="btn-play"
+            disabled={ !(name && email) }
+            onClick={ this.toPlay }
+          >
+            Jogar
+          </button>
         </form>
       </section>
     );
