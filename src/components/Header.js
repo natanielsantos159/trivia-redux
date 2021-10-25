@@ -8,22 +8,11 @@ import logo from '../images/trivia.png';
 import SettingsButton from './SettingsButton';
 
 class Header extends Component {
-  constructor(props) {
-    super(props);
-    const { score } = this.props;
+  constructor() {
+    super();
 
     this.state = {
-      player: {
-        name: '',
-        assertions: 0,
-        score,
-        gravatarEmail: '',
-      },
-      ranking: {
-        name: '',
-        score: 10,
-        picture: '',
-      },
+      picture: '',
     };
 
     this.getGravatarPicture = this.getGravatarPicture.bind(this);
@@ -34,29 +23,16 @@ class Header extends Component {
   }
 
   getGravatarPicture() {
-    const { email, name, score } = this.props;
+    const { email } = this.props;
     const hash = md5(email).toString();
     const picture = `https://www.gravatar.com/avatar/${hash}`;
-    this.setState({
-      ranking: {
-        name,
-        score: 10,
-        picture,
-      },
-      player: {
-        name,
-        assertions: 0,
-        score,
-        gravatarEmail: email,
-      },
-    });
+    this.setState({ picture });
   }
 
   render() {
     const { name, score } = this.props;
-    const { ranking, player } = this.state;
-    localStorage.setItem('player', player);
-    localStorage.setItem('ranking', ranking);
+    const { picture } = this.state;
+
     return (
       <section className="top-container">
         <Link to="/">
@@ -67,7 +43,7 @@ class Header extends Component {
             <img
               data-testid="header-profile-picture"
               className="header-profile-picture"
-              src={ ranking.picture }
+              src={ picture }
               alt="profile"
             />
             <span className="player-name">
