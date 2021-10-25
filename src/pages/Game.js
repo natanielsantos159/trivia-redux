@@ -12,12 +12,14 @@ class Game extends Component {
     this.state = {
       counter: 0,
       timer: 30,
+      score: 0,
     };
 
     this.handleCounter = this.handleCounter.bind(this);
     this.shuffleArray = this.shuffleArray.bind(this);
     this.handleQuestionTimer = this.handleQuestionTimer.bind(this);
     this.handleOrganizeAnswers = this.handleOrganizeAnswers.bind(this);
+    this.handleCorrectChange = this.handleCorrectChange.bind(this);
   }
 
   componentDidMount() {
@@ -45,6 +47,31 @@ class Game extends Component {
       }
     }, interval);
     return timer;
+  }
+
+  handleCorrectChange() {
+    const { timer, counter } = this.state;
+    const { triviaReturn: { results } } = this.props;
+
+    if (results) {
+      let difficulty = 0;
+      if (results[counter].difficulty === 'easy') {
+        difficulty = 1;
+      }
+      if (results[counter].difficulty === 'medium') {
+        difficulty = 2;
+      }
+      if (results[counter].difficulty === 'hard') {
+        const three = 3;
+        difficulty = three;
+      }
+      const ten = 10;
+      this.setState((prevState) => ({
+        score: prevState + (ten + (timer * difficulty)),
+      }));
+      console.log(difficulty);
+    }
+    console.log(this.state.score);
   }
 
   handleAnswerClick() {
@@ -91,7 +118,7 @@ class Game extends Component {
           data-testid="correct-answer"
           className="answer correct"
           key="4"
-          onClick={ this.handleAnswerClick }
+          onClick={ this.handleCorrectChange }
           disabled={ timer === 0 }
         >
           { results[counter].correct_answer }
@@ -114,12 +141,12 @@ class Game extends Component {
   }
 
   render() {
-    const { counter, timer } = this.state;
+    const { counter, timer, score } = this.state;
     const { triviaReturn: { results } } = this.props;
 
     return (
       <section>
-        <Header />
+        <Header score={ score } />
         <section>
           <span data-testid="question-category">
             { results ? `Category: ${results[counter].category} ` : 'Category: ' }
@@ -133,7 +160,10 @@ class Game extends Component {
             { this.handleOrganizeAnswers().map((eachAnswer) => eachAnswer)}
           </section>
         </section>
-        <span>{ `Tempo restante: ${timer} segundos` }</span>
+        <span>
+          { timer <= 1 ? `Tempo restante: ${timer} segundo`
+            : `Tempo restante: ${timer} segundos` }
+        </span>
       </section>
     );
   }
