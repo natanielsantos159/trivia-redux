@@ -22,6 +22,8 @@ class Game extends Component {
     this.handleQuestionTimer = this.handleQuestionTimer.bind(this);
     this.handleOrganizeAnswers = this.handleOrganizeAnswers.bind(this);
     this.handleCorrectChange = this.handleCorrectChange.bind(this);
+    this.handleAnswerClickCorrect = this.handleAnswerClickCorrect.bind(this);
+    this.handleAnswerClickIncorrect = this.handleAnswerClickIncorrect.bind(this);
   }
 
   componentDidMount() {
@@ -55,32 +57,38 @@ class Game extends Component {
     const { timer, counter } = this.state;
     const { triviaReturn: { results } } = this.props;
 
-    if (results) {
-      let difficulty = 0;
-      if (results[counter].difficulty === 'easy') {
-        difficulty = 1;
-      }
-      if (results[counter].difficulty === 'medium') {
-        difficulty = 2;
-      }
-      if (results[counter].difficulty === 'hard') {
-        const three = 3;
-        difficulty = three;
-      }
-      const ten = 10;
-      this.setState((prevState) => ({
-        score: prevState + (ten + (timer * difficulty)),
-      }));
-      console.log(difficulty);
+    let difficulty = 0;
+    if (results[counter].difficulty === 'easy') {
+      difficulty = 1;
     }
-    console.log(this.state.score);
+    if (results[counter].difficulty === 'medium') {
+      difficulty = 2;
+    }
+    if (results[counter].difficulty === 'hard') {
+      const three = 3;
+      difficulty = three;
+    }
+    const ten = 10;
+    this.setState((prevState) => ({
+      score: prevState.score + (ten + (timer * difficulty)),
+    }));
   }
 
-  handleAnswerClick() {
+  handleAnswerClickCorrect() {
     const alreadClicked = document.querySelector('.clicked') !== null;
+    const answers = document.querySelectorAll('.answer');
 
     if (!alreadClicked) {
-      const answers = document.querySelectorAll('.answer');
+      [...answers].forEach((answer) => answer.classList.add('clicked'));
+    }
+    this.handleCorrectChange();
+  }
+
+  handleAnswerClickIncorrect() {
+    const alreadClicked = document.querySelector('.clicked') !== null;
+    const answers = document.querySelectorAll('.answer');
+
+    if (!alreadClicked) {
       [...answers].forEach((answer) => answer.classList.add('clicked'));
     }
   }
@@ -120,7 +128,7 @@ class Game extends Component {
           data-testid="correct-answer"
           className="answer correct"
           key="4"
-          onClick={ this.handleCorrectChange }
+          onClick={ this.handleAnswerClickCorrect }
           disabled={ timer === 0 }
         >
           { results[counter].correct_answer }
@@ -132,7 +140,7 @@ class Game extends Component {
               className="answer incorrect"
               key={ index }
               data-testid={ `wrong-answer-${index}` }
-              onClick={ this.handleAnswerClick }
+              onClick={ this.handleAnswerClickIncorrect }
               disabled={ timer === 0 }
             >
               { incorrect }

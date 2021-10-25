@@ -53,8 +53,10 @@ class Header extends Component {
   }
 
   render() {
-    const { name } = this.props;
-    const { ranking: { picture }, player: { score } } = this.state;
+    const { name, score } = this.props;
+    const { ranking, player } = this.state;
+    localStorage.setItem('player', player);
+    localStorage.setItem('ranking', ranking);
     return (
       <section className="top-container">
         <Link to="/">
@@ -65,7 +67,7 @@ class Header extends Component {
             <img
               data-testid="header-profile-picture"
               className="header-profile-picture"
-              src={ picture }
+              src={ ranking.picture }
               alt="profile"
             />
             <span className="player-name">
