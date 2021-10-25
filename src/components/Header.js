@@ -5,6 +5,7 @@ import md5 from 'crypto-js/md5';
 import '../styles/Header.css';
 import { Link } from 'react-router-dom';
 import logo from '../images/trivia.png';
+import settings from '../images/sliders-h-solid (1).svg';
 
 class Header extends Component {
   constructor() {
@@ -33,7 +34,9 @@ class Header extends Component {
     const { profilePicture } = this.state;
     return (
       <section className="top-container">
-        <img className="trivia-logo" src={ logo } alt="Trivia Logo" />
+        <Link to="/">
+          <img className="trivia-logo" src={ logo } alt="Trivia Logo" />
+        </Link>
         <header>
           <div className="user-info">
             <img
@@ -53,15 +56,17 @@ class Header extends Component {
             {' '}
             <span data-testid="header-score">0</span>
           </span>
+          <Link to="/settings">
+            <button
+              type="button"
+              data-testid="btn-settings"
+              className="btn-settings"
+            >
+              {/* License: https://fontawesome.com/license/free */}
+              <img className="settings-icon" src={ settings } alt="Configurações" />
+            </button>
+          </Link>
         </header>
-        <Link to="/settings">
-          <button
-            type="button"
-            data-testid="btn-settings"
-          >
-            Configurações
-          </button>
-        </Link>
       </section>
     );
   }
