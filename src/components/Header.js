@@ -12,7 +12,7 @@ class Header extends Component {
     super();
 
     this.state = {
-      profilePicture: '',
+      picture: '',
     };
 
     this.getGravatarPicture = this.getGravatarPicture.bind(this);
@@ -25,13 +25,14 @@ class Header extends Component {
   getGravatarPicture() {
     const { email } = this.props;
     const hash = md5(email).toString();
-    const profilePicture = `https://www.gravatar.com/avatar/${hash}`;
-    this.setState({ profilePicture });
+    const picture = `https://www.gravatar.com/avatar/${hash}`;
+    this.setState({ picture });
   }
 
   render() {
-    const { name } = this.props;
-    const { profilePicture } = this.state;
+    const { name, score } = this.props;
+    const { picture } = this.state;
+
     return (
       <section className="top-container">
         <Link to="/">
@@ -42,7 +43,7 @@ class Header extends Component {
             <img
               data-testid="header-profile-picture"
               className="header-profile-picture"
-              src={ profilePicture }
+              src={ picture }
               alt="profile"
             />
             <span className="player-name">
@@ -54,7 +55,7 @@ class Header extends Component {
           <span className="player-score">
             Pontos:
             {' '}
-            <span data-testid="header-score">0</span>
+            <span data-testid="header-score">{ score }</span>
           </span>
           <SettingsButton />
         </header>
@@ -66,6 +67,7 @@ class Header extends Component {
 Header.propTypes = {
   email: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  score: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({

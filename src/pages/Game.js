@@ -8,25 +8,51 @@ import QuestionCard from '../components/QuestionCard';
 import '../styles/QuestionCard.css';
 
 class Game extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    const { email, name } = props;
 
     this.state = {
       counter: 0,
       timer: 30,
+      state: {
+        player: {
+          name,
+          assertions: 0,
+          score: 0,
+          gravatarEmail: email,
+        },
+      },
+      /*       ranking: {
+        name: '',
+        score: 10,
+        picture: '',
+      }, */
     };
 
     this.handleCounter = this.handleCounter.bind(this);
     this.shuffleArray = this.shuffleArray.bind(this);
     this.handleQuestionTimer = this.handleQuestionTimer.bind(this);
     this.handleOrganizeAnswers = this.handleOrganizeAnswers.bind(this);
+    this.handleCorrectChange = this.handleCorrectChange.bind(this);
+    this.handleAnswerClickCorrect = this.handleAnswerClickCorrect.bind(this);
+    this.handleAnswerClickIncorrect = this.handleAnswerClickIncorrect.bind(this);
   }
 
   componentDidMount() {
     const { triviaApi } = this.props;
+    const { state } = this.state;
 
     triviaApi();
     this.handleQuestionTimer();
+
+    localStorage.setItem('state', JSON.stringify(state));
+  }
+
+  componentDidUpdate() {
+    const { state } = this.state;
+
+    localStorage.setItem('state', JSON.stringify(state));
   }
 
   componentWillUnmount() {
@@ -49,11 +75,49 @@ class Game extends Component {
     return timer;
   }
 
-  handleAnswerClick() {
+  async handleCorrectChange() {
+    const { timer, counter } = this.state;
+    const { triviaReturn: { results }, email, name } = this.props;
+
+    let difficulty = 0;
+    if (results[counter].difficulty === 'easy') {
+      difficulty = 1;
+    }
+    if (results[counter].difficulty === 'medium') {
+      difficulty = 2;
+    }
+    if (results[counter].difficulty === 'hard') {
+      const three = 3;
+      difficulty = three;
+    }
+    const ten = 10;
+    this.setState((prevState) => ({
+      state: {
+        player: {
+          name,
+          assertions: prevState.state.player.assertions + 1,
+          score: prevState.state.player.score + (ten + (timer * difficulty)),
+          gravatarEmail: email,
+        },
+      },
+    }));
+  }
+
+  handleAnswerClickCorrect() {
     const alreadClicked = document.querySelector('.clicked') !== null;
+    const answers = document.querySelectorAll('.answer');
 
     if (!alreadClicked) {
-      const answers = document.querySelectorAll('.answer');
+      [...answers].forEach((answer) => answer.classList.add('clicked'));
+    }
+    this.handleCorrectChange();
+  }
+
+  handleAnswerClickIncorrect() {
+    const alreadClicked = document.querySelector('.clicked') !== null;
+    const answers = document.querySelectorAll('.answer');
+
+    if (!alreadClicked) {
       [...answers].forEach((answer) => answer.classList.add('clicked'));
     }
   }
@@ -93,7 +157,7 @@ class Game extends Component {
           data-testid="correct-answer"
           className="answer correct"
           key="4"
-          onClick={ this.handleAnswerClick }
+          onClick={ this.handleAnswerClickCorrect }
           disabled={ timer === 0 }
         >
           { results[counter].correct_answer }
@@ -105,7 +169,7 @@ class Game extends Component {
               className="answer incorrect"
               key={ index }
               data-testid={ `wrong-answer-${index}` }
-              onClick={ this.handleAnswerClick }
+              onClick={ this.handleAnswerClickIncorrect }
               disabled={ timer === 0 }
             >
               { incorrect }
@@ -116,19 +180,22 @@ class Game extends Component {
   }
 
   render() {
-    const { counter, timer } = this.state;
+    const { counter, timer, state } = this.state;
     const { triviaReturn: { results } } = this.props;
 
     return (
       <section>
-        <Header />
+        <Header score={ state.player.score } />
         <section className="content-container">
           <QuestionCard results={ results } counter={ counter } />
           <section className="answers-container">
             { this.handleOrganizeAnswers().map((eachAnswer) => eachAnswer) }
           </section>
         </section>
-        <span>{ `Tempo restante: ${timer} segundos` }</span>
+        <span>
+          { timer <= 1 ? `Tempo restante: ${timer} segundo`
+            : `Tempo restante: ${timer} segundos` }
+        </span>
       </section>
     );
   }
@@ -140,6 +207,8 @@ Game.propTypes = {
     response_code: PropTypes.number,
     results: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
+  email: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -148,6 +217,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => ({
   triviaReturn: state.gameReducer.triviaReturn,
+  email: state.loginReducer.email,
+  name: state.loginReducer.name,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);
