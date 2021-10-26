@@ -147,8 +147,8 @@ class Game extends Component {
     if (!alreadClicked) {
       [...answers].forEach((answer) => answer.classList.add('clicked'));
     }
-    
-    if(target.classList.contains('correct')) this.handleCorrectChange();
+
+    if (target.classList.contains('correct')) this.handleCorrectChange();
   }
 
   handleCounter() {
@@ -174,7 +174,6 @@ class Game extends Component {
       [...answers].forEach((answer) => answer.classList.remove('clicked'));
     }, 100);
   }
-
 
   render() {
     const { counter, timer, answers, state } = this.state;
