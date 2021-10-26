@@ -17,11 +17,12 @@ class Game extends Component {
       counter: 0,
       timer: 30,
     };
-
+    this.gameTimer = null;
     this.handleCounter = this.handleCounter.bind(this);
     this.shuffleArray = this.shuffleArray.bind(this);
     this.getAnswers = this.getAnswers.bind(this);
     this.handleQuestionTimer = this.handleQuestionTimer.bind(this);
+    this.handleAnswerClick = this.handleAnswerClick.bind(this);
   }
 
   componentDidMount() {
@@ -39,7 +40,6 @@ class Game extends Component {
 
   getAnswers() {
     const { triviaReturn: { results } } = this.props;
-    console.log(results)
     const answers = results.reduce((acc, result) => {
       const incorrectAnswers = result.incorrect_answers.map((answer) => ({ answer,
         correct: false }));
@@ -73,9 +73,9 @@ class Game extends Component {
 
   handleQuestionTimer() {
     const interval = 1000;
-    const thirty = 30;
+    const thirty = 31;
     let timer = thirty;
-    setInterval(() => {
+    this.gameTimer = setInterval(() => {
       if (timer > 0) {
         timer -= 1;
         this.setState({
@@ -88,17 +88,36 @@ class Game extends Component {
 
   handleAnswerClick() {
     const alreadClicked = document.querySelector('.clicked') !== null;
-
+    const answers = document.querySelectorAll('.answer');
+    const nextBtn = document.querySelector('.next-question-btn');
+    nextBtn.classList.add('visible');
     if (!alreadClicked) {
-      const answers = document.querySelectorAll('.answer');
       [...answers].forEach((answer) => answer.classList.add('clicked'));
     }
   }
 
   handleCounter() {
+    const questionCard = document.querySelector('.question-card');
+    const answersContainer = document.querySelector('.answers-container');
+    const nextBtn = document.querySelector('.next-question-btn');
+    const answers = document.querySelectorAll('.answer');
+
+    nextBtn.classList.remove('visible');
+    questionCard.style.display = 'none';
+    answersContainer.style.display = 'none';
+
     this.setState((prevState) => ({
-      counter: prevState + 1,
+      counter: prevState.counter + 1,
     }));
+
+    clearInterval(this.gameTimer);
+    this.handleQuestionTimer();
+
+    setTimeout(() => {
+      questionCard.style.display = 'block';
+      answersContainer.style.display = 'flex';
+      [...answers].forEach((answer) => answer.classList.remove('clicked'));
+    }, 100);
   }
 
   render() {
@@ -108,7 +127,7 @@ class Game extends Component {
       <section>
         <Header />
         <section className="content-container">
-          <QuestionCard results={ results ? results[counter] : [] } />
+          <QuestionCard results={ results ? results[counter] : {} } />
           <Answers
             answers={ answers[counter] }
             disabled={ timer === 0 }
@@ -120,6 +139,7 @@ class Game extends Component {
           <button
             type="button"
             className="next-question-btn"
+            data-testid="btn-next"
             onClick={ this.handleCounter }
           >
             Próxima

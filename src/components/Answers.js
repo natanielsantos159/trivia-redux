@@ -6,16 +6,16 @@ export default class Answers extends Component {
     const { onClick, answers, disabled } = this.props;
     return (
       <section className="answers-container">
-        { answers.map((answer, index) => (
+        { answers.map(({ answer, correct }, index) => (
           <button
             type="button"
-            data-testid={ `${answer.correct ? 'correct' : 'incorrect'}-answer` }
-            className={ `answer ${answer.correct ? 'correct' : 'incorrect'}` }
+            data-testid={ correct ? 'correct-answer' : `wrong-answer-${index}` }
+            className={ `answer ${correct ? 'correct' : 'incorrect'}` }
             key={ index }
             onClick={ onClick }
             disabled={ disabled }
           >
-            { answer.answer }
+            { answer }
           </button>
         ))}
       </section>
@@ -24,6 +24,7 @@ export default class Answers extends Component {
 }
 
 Answers.propTypes = {
+  onClick: PropTypes.func.isRequired,
   answers: PropTypes.arrayOf(PropTypes.object),
   disabled: PropTypes.bool.isRequired,
 };

@@ -22,7 +22,11 @@ export default class QuestionCard extends Component {
 }
 
 QuestionCard.propTypes = {
-  results: PropTypes.arrayOf(PropTypes.object),
+  results: PropTypes.shape({
+    category: PropTypes.string,
+    correct_answer: PropTypes.string,
+    question: PropTypes.string,
+  }),
 };
 
 QuestionCard.defaultProps = {
