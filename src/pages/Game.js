@@ -152,18 +152,22 @@ class Game extends Component {
   }
 
   handleCounter() {
+    const { counter } = this.state;
+    const { history } = this.props;
     const questionCard = document.querySelector('.question-card');
     const answersContainer = document.querySelector('.answers-container');
-    const nextBtn = document.querySelector('.next-question-btn');
     const answers = document.querySelectorAll('.answer');
+    const four = 4;
 
-    nextBtn.classList.remove('visible');
+    if (counter === four) {
+      history.push('/feedback');
+    }
+
+    document.querySelector('.next-question-btn').classList.remove('visible');
     questionCard.style.display = 'none';
     answersContainer.style.display = 'none';
 
-    this.setState((prevState) => ({
-      counter: prevState.counter + 1,
-    }));
+    this.setState((prevState) => ({ counter: prevState.counter + 1 }));
 
     clearInterval(this.gameTimer);
     this.handleQuestionTimer();
@@ -216,6 +220,9 @@ Game.propTypes = {
   }).isRequired,
   email: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
