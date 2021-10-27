@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import '../styles/Feedback.css';
 
@@ -56,6 +57,15 @@ export default class Feedback extends Component {
           >
             { state.player.assertions >= three ? 'Mandou bem!' : 'Podia ser melhor...'}
           </p>
+          <Link to="/">
+            <button
+              type="button"
+              data-testid="btn-play-again"
+              className="btn-play"
+            >
+              Play again!
+            </button>
+          </Link>
         </main>
       </>
     );
