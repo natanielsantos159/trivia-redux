@@ -62,7 +62,7 @@ export default class Feedback extends Component {
               { state.player.assertions >= three ? 'Mandou bem!' : 'Podia ser melhor...'}
             </p>
           </div>
-          <Link to="/">
+          <Link to="/game">
             <button
               type="button"
               data-testid="btn-play-again"
