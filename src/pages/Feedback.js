@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import '../styles/Feedback.css';
 import starIcon from '../images/star-solid.svg';
+import starIconBlack from '../images/star-solid-black.svg';
 
 export default class Feedback extends Component {
   constructor() {
@@ -40,22 +41,20 @@ export default class Feedback extends Component {
             <p>Resultado</p>
           </div>
           <div>
+            <span className="feedback-total-score">
+              { state.player.score }
+            </span>
             <div className="stars">
-              { new Array(state.player.assertions)
-                .fill(<img src={ starIcon } alt="starIcon" className="star" />) }
+              { new Array(5)
+                .fill(<img src={ starIcon } alt="Star Icon" className="star" />, 0, state.player.assertions)
+                .fill(<img src={ starIconBlack } alt="Star Icon Black" className="star-black" />, state.player.assertions) }
             </div>
             <p>
               Você acertou
               <span className="feedback-total-question">
                 { ` ${state.player.assertions} ` }
               </span>
-              perguntas
-            </p>
-            <p>
-              Sua pontuação:
-              <span className="feedback-total-score">
-                { `${state.player.score} ` }
-              </span>
+              { state.player.assertions > 1 ? 'perguntas' : 'pergunta' }
             </p>
             <p
               className="feedback-text"
