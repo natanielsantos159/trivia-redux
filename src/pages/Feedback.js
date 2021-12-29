@@ -47,7 +47,7 @@ export default class Feedback extends Component {
             <div className="stars">
               { new Array(5)
                 .fill(<img src={ starIcon } alt="Star Icon" className="star" />, 0, state.player.assertions)
-                .fill(<img src={ starIconBlack } alt="Star Icon Black" className="star-black" />, state.player.assertions) }
+                .fill(<img src={ starIconBlack } alt="Star Icon Black" className="star" />, state.player.assertions) }
             </div>
             <p>
               Você acertou
