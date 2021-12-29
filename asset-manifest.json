@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/trivia-redux/static/css/main.a1e5219c.chunk.css",
-    "main.js": "/trivia-redux/static/js/main.511d148e.chunk.js",
-    "main.js.map": "/trivia-redux/static/js/main.511d148e.chunk.js.map",
+    "main.js": "/trivia-redux/static/js/main.3cc62e2f.chunk.js",
+    "main.js.map": "/trivia-redux/static/js/main.3cc62e2f.chunk.js.map",
     "runtime-main.js": "/trivia-redux/static/js/runtime-main.b6a8bd90.js",
     "runtime-main.js.map": "/trivia-redux/static/js/runtime-main.b6a8bd90.js.map",
     "static/js/2.57b3887d.chunk.js": "/trivia-redux/static/js/2.57b3887d.chunk.js",
     "static/js/2.57b3887d.chunk.js.map": "/trivia-redux/static/js/2.57b3887d.chunk.js.map",
     "index.html": "/trivia-redux/index.html",
-    "precache-manifest.69345193d90eb5c35532f945d7394877.js": "/trivia-redux/precache-manifest.69345193d90eb5c35532f945d7394877.js",
+    "precache-manifest.d77a9014462ba981fccbc812daabbc8e.js": "/trivia-redux/precache-manifest.d77a9014462ba981fccbc812daabbc8e.js",
     "service-worker.js": "/trivia-redux/service-worker.js",
     "static/css/main.a1e5219c.chunk.css.map": "/trivia-redux/static/css/main.a1e5219c.chunk.css.map",
     "static/js/2.57b3887d.chunk.js.LICENSE.txt": "/trivia-redux/static/js/2.57b3887d.chunk.js.LICENSE.txt",
@@ -19,6 +19,6 @@
     "static/js/runtime-main.b6a8bd90.js",
     "static/js/2.57b3887d.chunk.js",
     "static/css/main.a1e5219c.chunk.css",
-    "static/js/main.511d148e.chunk.js"
+    "static/js/main.3cc62e2f.chunk.js"
   ]
 }
