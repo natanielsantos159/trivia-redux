@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import '../styles/Feedback.css';
+import starIcon from '../images/star-solid.svg';
 
 export default class Feedback extends Component {
   constructor() {
@@ -34,31 +35,34 @@ export default class Feedback extends Component {
     return (
       <>
         <Header score={ state.player.score } />
-        <table className="feedback-container">
-          <thead className="result-header">
-            <th>Resultado</th>
-          </thead>
-          <tbody>
+        <div className="feedback-container">
+          <div className="result-header">
+            <p>Resultado</p>
+          </div>
+          <div>
+            <div className="stars">
+              { new Array(state.player.assertions)
+                .fill(<img src={ starIcon } alt="starIcon" className="star" />) }
+            </div>
             <p>
               Você acertou
-              <span data-testid="feedback-total-question">
+              <span className="feedback-total-question">
                 { ` ${state.player.assertions} ` }
               </span>
               perguntas
             </p>
             <p>
-              <span data-testid="feedback-total-score">
+              Sua pontuação:
+              <span className="feedback-total-score">
                 { `${state.player.score} ` }
               </span>
-              Pontos
             </p>
             <p
               className="feedback-text"
-              data-testid="feedback-text"
             >
               { state.player.assertions >= three ? 'Mandou bem!' : 'Podia ser melhor...'}
             </p>
-          </tbody>
+          </div>
           <Link to="/">
             <button
               type="button"
@@ -68,7 +72,7 @@ export default class Feedback extends Component {
               Play again!
             </button>
           </Link>
-        </table>
+        </div>
       </>
     );
   }

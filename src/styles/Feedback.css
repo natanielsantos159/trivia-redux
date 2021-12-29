@@ -25,3 +25,16 @@
 .result-header p {
   height: 10px;
 }
+
+.feedback-total-score {
+  font-weight: 900;
+}
+
+.star {
+  height: 40px;
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+}
