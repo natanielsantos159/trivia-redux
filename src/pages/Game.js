@@ -25,11 +25,7 @@ class Game extends Component {
           gravatarEmail: email,
         },
       },
-      /*       ranking: {
-        name: '',
-        score: 10,
-        picture: '',
-      }, */
+      clicked: false,
     };
     this.gameTimer = null;
     this.handleCounter = this.handleCounter.bind(this);
@@ -139,14 +135,9 @@ class Game extends Component {
   }
 
   handleAnswerClick({ target }) {
-    const alreadClicked = document.querySelector('.clicked') !== null;
-    const answers = document.querySelectorAll('.answer');
-    const nextBtn = document.querySelector('.next-question-btn');
-    nextBtn.classList.add('visible');
+    const { clicked } = this.state;
 
-    if (!alreadClicked) {
-      [...answers].forEach((answer) => answer.classList.add('clicked'));
-    }
+    if (!clicked) this.setState({ clicked: true });
 
     if (target.classList.contains('correct')) this.handleCorrectChange();
   }
@@ -156,18 +147,19 @@ class Game extends Component {
     const { history } = this.props;
     const questionCard = document.querySelector('.question-card');
     const answersContainer = document.querySelector('.answers-container');
-    const answers = document.querySelectorAll('.answer');
     const four = 4;
 
     if (counter === four) {
       history.push('/feedback');
     }
 
-    document.querySelector('.next-question-btn').classList.remove('visible');
     questionCard.style.display = 'none';
     answersContainer.style.display = 'none';
 
-    this.setState((prevState) => ({ counter: prevState.counter + 1 }));
+    this.setState((prevState) => ({
+      counter: prevState.counter + 1,
+      clicked: false,
+    }));
 
     clearInterval(this.gameTimer);
     this.handleQuestionTimer();
@@ -175,12 +167,11 @@ class Game extends Component {
     setTimeout(() => {
       questionCard.style.display = 'block';
       answersContainer.style.display = 'flex';
-      [...answers].forEach((answer) => answer.classList.remove('clicked'));
     }, 100);
   }
 
   render() {
-    const { counter, timer, answers, state } = this.state;
+    const { counter, timer, answers, state, clicked } = this.state;
     const { triviaReturn: { results } } = this.props;
     return (
       <section>
@@ -188,6 +179,7 @@ class Game extends Component {
         <section className="content-container">
           <QuestionCard results={ results ? results[counter] : {} } />
           <Answers
+            clicked={ clicked }
             answers={ answers[counter] }
             disabled={ timer === 0 }
             onClick={ this.handleAnswerClick }
@@ -200,7 +192,7 @@ class Game extends Component {
           </span>
           <button
             type="button"
-            className="next-question-btn"
+            className={`next-question-btn ${(timer === 0 || clicked) && 'visible'}`}
             data-testid="btn-next"
             onClick={ this.handleCounter }
           >
