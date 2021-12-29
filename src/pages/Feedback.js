@@ -40,7 +40,7 @@ export default class Feedback extends Component {
           <div className="result-header">
             <p>Resultado</p>
           </div>
-          <div>
+          <div className="result-body">
             <span className="feedback-total-score">
               { state.player.score }
             </span>
@@ -49,13 +49,13 @@ export default class Feedback extends Component {
                 .fill(<img src={ starIcon } alt="Star Icon" className="star" />, 0, state.player.assertions)
                 .fill(<img src={ starIconBlack } alt="Star Icon Black" className="star" />, state.player.assertions) }
             </div>
-            <p>
+            { state.player.assertions > 0 ? <p>
               Você acertou
               <span className="feedback-total-question">
                 { ` ${state.player.assertions} ` }
               </span>
               { state.player.assertions > 1 ? 'perguntas' : 'pergunta' }
-            </p>
+            </p> : 'Você não acertou nenhuma questão :('}
             <p
               className="feedback-text"
             >
