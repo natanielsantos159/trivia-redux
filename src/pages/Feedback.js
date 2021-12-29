@@ -34,29 +34,31 @@ export default class Feedback extends Component {
     return (
       <>
         <Header score={ state.player.score } />
-        <main className="feedback-container">
-          <section className="result-header">
-            <p>Resultado</p>
-          </section>
-          <p>
-            Você acertou
-            <span data-testid="feedback-total-question">
-              { ` ${state.player.assertions} ` }
-            </span>
-            perguntas
-          </p>
-          <p>
-            <span data-testid="feedback-total-score">
-              { `${state.player.score} ` }
-            </span>
-            Pontos
-          </p>
-          <p
-            className="feedback-text"
-            data-testid="feedback-text"
-          >
-            { state.player.assertions >= three ? 'Mandou bem!' : 'Podia ser melhor...'}
-          </p>
+        <table className="feedback-container">
+          <thead className="result-header">
+            <th>Resultado</th>
+          </thead>
+          <tbody>
+            <p>
+              Você acertou
+              <span data-testid="feedback-total-question">
+                { ` ${state.player.assertions} ` }
+              </span>
+              perguntas
+            </p>
+            <p>
+              <span data-testid="feedback-total-score">
+                { `${state.player.score} ` }
+              </span>
+              Pontos
+            </p>
+            <p
+              className="feedback-text"
+              data-testid="feedback-text"
+            >
+              { state.player.assertions >= three ? 'Mandou bem!' : 'Podia ser melhor...'}
+            </p>
+          </tbody>
           <Link to="/">
             <button
               type="button"
@@ -66,7 +68,7 @@ export default class Feedback extends Component {
               Play again!
             </button>
           </Link>
-        </main>
+        </table>
       </>
     );
   }
