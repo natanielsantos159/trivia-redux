@@ -1,5 +1,6 @@
 .feedback-container {
   align-items: center;
+  animation: appear 300ms;
   background: #562c48;
   border: 1.8px solid white;
   border-radius: 16px;
