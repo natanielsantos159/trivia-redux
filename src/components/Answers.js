@@ -2,6 +2,12 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 export default class Answers extends Component {
+  encodeUtf8(string) {
+    // função do Lucas Rodrigues Turma 08
+    const stringUTF = unescape(encodeURIComponent(string));
+    return stringUTF.replace(/&quot;|&#039;/gi, '\'');
+  }
+
   render() {
     const { onClick, answers, disabled, clicked } = this.props;
     return (
@@ -15,7 +21,7 @@ export default class Answers extends Component {
             onClick={ onClick }
             disabled={ disabled }
           >
-            { answer }
+            { this.encodeUtf8(answer) }
           </button>
         ))}
       </section>

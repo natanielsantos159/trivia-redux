@@ -106,7 +106,7 @@ class Game extends Component {
     return timer;
   }
 
-  async handleCorrectChange() {
+  handleCorrectChange() {
     const { timer, counter } = this.state;
     const { triviaReturn: { results }, email, name } = this.props;
 
