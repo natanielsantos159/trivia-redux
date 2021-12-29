@@ -59,7 +59,7 @@ export default class Feedback extends Component {
             <p
               className="feedback-text"
             >
-              { state.player.assertions >= three ? 'Mandou bem!' : 'Podia ser melhor...'}
+              { state.player.assertions >= three ? 'Mandou bem! 🎉' : 'Podia ser melhor...'}
             </p>
           </div>
           <Link to="/game">
