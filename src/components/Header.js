@@ -5,7 +5,6 @@ import md5 from 'crypto-js/md5';
 import '../styles/Header.css';
 import { Link } from 'react-router-dom';
 import logo from '../images/trivia.png';
-import SettingsButton from './SettingsButton';
 
 class Header extends Component {
   constructor() {
@@ -57,7 +56,6 @@ class Header extends Component {
             {' '}
             <span data-testid="header-score">{ score }</span>
           </span>
-          <SettingsButton />
         </header>
       </section>
     );

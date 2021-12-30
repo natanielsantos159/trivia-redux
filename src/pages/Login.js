@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { fetchToken, setUserLogin } from '../actions';
 import '../styles/Login.css';
 import logo from '../images/trivia.png';
-import SettingsButton from '../components/SettingsButton';
 
 class Login extends Component {
   constructor() {
@@ -38,7 +37,6 @@ class Login extends Component {
       <>
         <img className="login-trivia-logo" src={ logo } alt="Trivia Logo" />
         <section className="login-section">
-          <SettingsButton />
           <form>
             <label htmlFor="emailInput">
               E-mail:
