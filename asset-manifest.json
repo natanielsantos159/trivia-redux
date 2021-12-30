@@ -1,26 +1,25 @@
 {
   "files": {
-    "main.css": "/trivia-redux/static/css/main.4c7e092f.chunk.css",
-    "main.js": "/trivia-redux/static/js/main.fbf511e4.chunk.js",
-    "main.js.map": "/trivia-redux/static/js/main.fbf511e4.chunk.js.map",
+    "main.css": "/trivia-redux/static/css/main.2730e0fa.chunk.css",
+    "main.js": "/trivia-redux/static/js/main.1342b2b1.chunk.js",
+    "main.js.map": "/trivia-redux/static/js/main.1342b2b1.chunk.js.map",
     "runtime-main.js": "/trivia-redux/static/js/runtime-main.b6a8bd90.js",
     "runtime-main.js.map": "/trivia-redux/static/js/runtime-main.b6a8bd90.js.map",
-    "static/js/2.33069db2.chunk.js": "/trivia-redux/static/js/2.33069db2.chunk.js",
-    "static/js/2.33069db2.chunk.js.map": "/trivia-redux/static/js/2.33069db2.chunk.js.map",
+    "static/js/2.715ac2d9.chunk.js": "/trivia-redux/static/js/2.715ac2d9.chunk.js",
+    "static/js/2.715ac2d9.chunk.js.map": "/trivia-redux/static/js/2.715ac2d9.chunk.js.map",
     "index.html": "/trivia-redux/index.html",
-    "precache-manifest.ffdac653e9fab891cf756ee6b78789be.js": "/trivia-redux/precache-manifest.ffdac653e9fab891cf756ee6b78789be.js",
+    "precache-manifest.a4c43c99f75026703cb81c463b617b54.js": "/trivia-redux/precache-manifest.a4c43c99f75026703cb81c463b617b54.js",
     "service-worker.js": "/trivia-redux/service-worker.js",
-    "static/css/main.4c7e092f.chunk.css.map": "/trivia-redux/static/css/main.4c7e092f.chunk.css.map",
-    "static/js/2.33069db2.chunk.js.LICENSE.txt": "/trivia-redux/static/js/2.33069db2.chunk.js.LICENSE.txt",
-    "static/media/sliders-h-solid (1).svg": "/trivia-redux/static/media/sliders-h-solid (1).b5adcc53.svg",
+    "static/css/main.2730e0fa.chunk.css.map": "/trivia-redux/static/css/main.2730e0fa.chunk.css.map",
+    "static/js/2.715ac2d9.chunk.js.LICENSE.txt": "/trivia-redux/static/js/2.715ac2d9.chunk.js.LICENSE.txt",
     "static/media/star-solid-black.svg": "/trivia-redux/static/media/star-solid-black.83dae189.svg",
     "static/media/star-solid.svg": "/trivia-redux/static/media/star-solid.2caa74cf.svg",
     "static/media/trivia.png": "/trivia-redux/static/media/trivia.466d153e.png"
   },
   "entrypoints": [
     "static/js/runtime-main.b6a8bd90.js",
-    "static/js/2.33069db2.chunk.js",
-    "static/css/main.4c7e092f.chunk.css",
-    "static/js/main.fbf511e4.chunk.js"
+    "static/js/2.715ac2d9.chunk.js",
+    "static/css/main.2730e0fa.chunk.css",
+    "static/js/main.1342b2b1.chunk.js"
   ]
 }
