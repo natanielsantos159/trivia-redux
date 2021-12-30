@@ -83,12 +83,12 @@ input:focus {
 
   from {
     opacity: 0;
-    transform: translateY(35%);
+    transform: translate(-50%, -50%) translateY(35%);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate(-50%, -50%) translateY(0);
   }
 }
 

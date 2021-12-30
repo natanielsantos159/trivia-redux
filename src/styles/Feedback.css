@@ -1,6 +1,6 @@
 .feedback-container {
   align-items: center;
-  animation: appear 300ms;
+  animation: feedbackAppear 300ms;
   background: #562c48;
   border: 1.8px solid white;
   border-radius: 16px;
@@ -85,5 +85,18 @@
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@keyframes feedbackAppear {
+
+  from {
+    opacity: 0;
+    transform: translateY(35%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
