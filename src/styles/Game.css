@@ -87,7 +87,7 @@
 .answers-container {
   display: flex;
   flex-direction: column;
-  min-width: 400px;
+  width: 54vh;
 }
 
 .bottom-container {
