@@ -38,3 +38,23 @@
     transform: translateX(0);
   }
 }
+
+
+@media screen and ( max-width : 760px ) {
+
+  .question-card {
+    width: 45vh;
+  }
+}
+
+@media screen and ( max-width : 480px ) {
+
+  .question-card {
+    height: auto;
+  }
+
+  .category-section {
+    font-size: 13.6px;
+  }
+
+}
