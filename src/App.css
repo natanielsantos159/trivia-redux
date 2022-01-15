@@ -8,11 +8,14 @@ html {
   height: 100%;
 }
 
-.trivia-logo {
-  height: 90px;
-  min-width: 261px;
-}
-
 ::-webkit-scrollbar {
   display: none;
+}
+
+@media screen and ( max-width : 480px ) {
+
+  html {
+    background-attachment: local;
+  }
+
 }
