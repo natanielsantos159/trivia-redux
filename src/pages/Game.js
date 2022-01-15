@@ -186,7 +186,7 @@ class Game extends Component {
           />
         </section>
         <section className="bottom-container">
-          <span>
+          <span className="timer-container">
             { timer <= 1 ? `Tempo restante: ${timer} segundo`
               : `Tempo restante: ${timer} segundos` }
           </span>

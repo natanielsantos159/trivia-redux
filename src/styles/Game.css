@@ -11,6 +11,8 @@
   display: flex;
   justify-content: space-evenly;
   min-height: 220px;
+  transition: all 0.5s;
+
 }
 
 .answer {
@@ -39,7 +41,7 @@
 
 .answer, .next-question-btn {
   border-style: none;
-  box-shadow: 1px 4px 3px 2px rgb(0 0 0 / 20%);
+  box-shadow: 1px 4px 3px 2px #00000033;
   cursor: pointer;
   font-weight: 750;
   transition: all 1s;
@@ -88,6 +90,7 @@
   display: flex;
   flex-direction: column;
   width: 54vh;
+  transition: all 0.5s;
 }
 
 .bottom-container {
@@ -106,4 +109,71 @@
 
 .timer {
   font-weight: 700;
+}
+
+.trivia-logo {
+  height: 90px;
+  width: 261px;
+}
+
+@media screen and ( max-width : 760px ) {
+
+  .trivia-logo {
+    height: auto;
+    width: 200px;
+  }
+
+  .answer {
+    width: 40vh;
+  }
+
+  .answers-container {
+    align-items: center;
+  }
+
+}
+
+@media screen and ( max-width : 480px ) {
+
+  .trivia-logo {
+    height: auto;
+    width: 130px;
+  }
+
+  .content-container {
+    flex-direction: column;
+    align-items: center;
+    min-height: 375px;
+  }
+
+  .question-card {
+    width: 90%;
+    height: auto;
+    margin: 0 30px 15px;
+  }
+
+  .bottom-container {
+    align-items: flex-start;
+  }
+
+  .timer-container {
+    border: 1.7px solid white;
+    border-radius: 9px;
+    font-size: 13.5px;
+    padding: 5px;
+    font-weight: 700;
+    width: 40%;
+  }
+  
+  .answer {
+    margin-bottom: 12px;
+  }
+
+  .next-question-btn {
+    font-size: 13.5px;
+  }
+
+  .answers-container {
+    min-height: 200px;
+  }
 }
