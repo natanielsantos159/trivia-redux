@@ -95,3 +95,43 @@ input:focus {
 .login-section a {
   align-self: self-end;
 }
+
+@media screen and ( max-width : 480px ) {
+
+  .login-section {
+    width: 60%;
+    padding-top:30px;
+    padding-bottom: 20px;
+  }
+
+  .login-trivia-logo {
+    top: 13vh;
+  }
+
+  label {
+    height: auto;
+    margin: auto;
+  }
+
+  input {
+    width: 200px;
+    margin-top: 5px;
+    height: 29px;
+  }
+
+  .login-section form {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    height: 100%;
+    margin: 0;
+  }
+
+  .btn-play {
+    position: relative;
+    margin: 15px;
+    height: 35px;
+    font-size: 14px;
+  }
+}
