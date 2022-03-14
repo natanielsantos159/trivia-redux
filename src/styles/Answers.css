@@ -19,6 +19,7 @@
   width: 300px;
 }
 
+
 .answer, .next-question-btn {
   border-style: none;
   box-shadow: 1px 4px 3px 2px #00000033;
@@ -27,6 +28,13 @@
   transition: all 1s;
 }
 
+.answer:hover, .next-question-btn:hover {
+  border: 1.8px solid white;
+}
+
+.answer:hover {
+  transform: scale(1.05);
+}
 
 .answer:nth-of-type( 1 ) {
   animation: move 600ms;
@@ -55,14 +63,6 @@
   flex-direction: column;
   width: 54vh;
   transition: all 0.5s;
-}
-
-.answer:hover, .next-question-btn:hover {
-  border: 1.8px solid white;
-}
-
-.answer:hover {
-  transform: scale(1.05);
 }
 
 @keyframes move {
