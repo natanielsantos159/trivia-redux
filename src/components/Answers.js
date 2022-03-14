@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import '../styles/Answers.css';
 
 export default class Answers extends Component {
   encodeUtf8(string) {
