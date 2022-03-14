@@ -19,6 +19,9 @@
   width: 300px;
 }
 
+.answer:disabled {
+  cursor: not-allowed;
+}
 
 .answer, .next-question-btn {
   border-style: none;
@@ -35,6 +38,11 @@
 .answer:hover {
   transform: scale(1.05);
 }
+
+.answer:hover:disabled {
+  transform: none;
+}
+
 
 .answer:nth-of-type( 1 ) {
   animation: move 600ms;
