@@ -181,7 +181,7 @@ class Game extends Component {
           <Answers
             clicked={ clicked }
             answers={ answers[counter] }
-            disabled={ timer === 0 }
+            disabled={ timer === 0 || clicked }
             onClick={ this.handleAnswerClick }
           />
         </section>
