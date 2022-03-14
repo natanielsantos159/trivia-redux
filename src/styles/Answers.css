@@ -15,7 +15,7 @@
 }
 
 .answer:disabled {
-  cursor: not-allowed;
+  cursor: unset;
 }
 
 .answer, .next-question-btn {
