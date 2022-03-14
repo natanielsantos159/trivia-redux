@@ -23,11 +23,12 @@ class Login extends Component {
     this.setState({ [name]: value });
   }
 
-  async toPlay() {
+  toPlay() {
     const { tokenAPI, history, setUser } = this.props;
     const { email, name } = this.state;
-    await tokenAPI();
+    tokenAPI();
     setUser({ email, name });
+    localStorage.setItem('trivia-user', JSON.stringify({ email, name }));
     history.push('/game');
   }
 
