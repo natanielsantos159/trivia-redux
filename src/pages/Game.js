@@ -189,10 +189,15 @@ class Game extends Component {
           />
         </section>
         <section className="bottom-container">
-          <span className="timer-container">
+          <div className="timer-container">
+            {results && <progress
+              className="game-process"
+              value={ timer }
+              max={ 30 }
+            />}
             { timer <= 1 ? `Tempo restante: ${timer} segundo`
               : `Tempo restante: ${timer} segundos` }
-          </span>
+          </div>
           <button
             type="button"
             className={ `next-question-btn ${(timer === 0 || clicked) && 'visible'}` }

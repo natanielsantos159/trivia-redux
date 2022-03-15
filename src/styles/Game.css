@@ -37,20 +37,36 @@
   width: 261px;
 }
 
-@media screen and ( max-width : 760px ) {
+.timer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .trivia-logo {
-    height: auto;
-    width: 200px;
-  }
+progress[value]::-webkit-progress-bar {
+  background-color: #812f54;
+  border-radius: 3px;
+  border: 1px solid white;
+}
 
+progress {
+  border-radius: 3px;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 60vh;
+  margin: 10px 20px;
+}
+
+progress::-webkit-progress-value {
+  background-color: #b0235f;
+  border-radius: 4px;
 }
 
 @media screen and ( max-width : 480px ) {
 
   .trivia-logo {
     height: auto;
-    width: 130px;
+    width: 120px;
   }
 
   .content-container {
@@ -64,7 +80,6 @@
   }
 
   .timer-container {
-    border: 1.7px solid white;
     border-radius: 9px;
     font-size: 13.5px;
     padding: 5px;
@@ -72,8 +87,26 @@
     width: 40%;
   }
 
+  progress {
+    width: 90vw;
+    margin-left: 200px;
+  }
+
   .next-question-btn {
     font-size: 13.5px;
+  }
+
+}
+
+@media screen and ( min-width : 760px ) {
+
+  .trivia-logo {
+    height: auto;
+    width: 200px;
+  }
+
+  .timer-container, progress {
+    width: 40vh;
   }
 
 }
