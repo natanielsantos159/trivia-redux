@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import Card from '../components/Card';
 import logo from '../images/trivia.png';
 import { categories } from '../data';
+import { fetchToken } from '../actions';
+
 import '../styles/NewGame.css';
 
-export default class NewGame extends Component {
+class NewGame extends Component {
   constructor() {
     super();
     this.state = {
@@ -19,6 +21,12 @@ export default class NewGame extends Component {
 
   handleChange({ target: { name, value } }) {
     this.setState({ [name]: value });
+  }
+
+  toPlay() {
+    const { tokenAPI, history } = this.props;
+    tokenAPI();
+    history.push('/game');
   }
 
   render() {
@@ -76,9 +84,27 @@ export default class NewGame extends Component {
                 />
               </label>
             </label>
+            <button className="btn-play" onClick={this.toPlay}>Jogar!</button>
           </Card>
         </section>
       </main>
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  tokenAPI: () => dispatch(fetchToken()),
+});
+
+const mapStateToProps = (state) => ({
+  token: state.tokenReducer.token,
+});
+
+Login.propTypes = {
+  tokenAPI: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewGame);

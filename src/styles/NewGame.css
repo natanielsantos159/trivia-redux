@@ -32,3 +32,8 @@
 .new-game-page input[type="radio"] {
   accent-color: #c53b76;
 }
+
+.new-game-page .btn-play {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
