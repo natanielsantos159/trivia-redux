@@ -140,7 +140,10 @@ class Game extends Component {
   handleAnswerClick({ target }) {
     const { clicked } = this.state;
 
-    if (!clicked) this.setState({ clicked: true });
+    if (!clicked) {
+      this.setState({ clicked: true });
+      clearInterval(this.gameTimer);
+    }
 
     if (target.classList.contains('correct')) this.handleCorrectChange();
   }
