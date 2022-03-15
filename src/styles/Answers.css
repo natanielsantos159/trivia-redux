@@ -80,24 +80,6 @@
   }
 }
 
-
-@media screen and ( max-width : 760px ) {
-
-  .trivia-logo {
-    height: auto;
-    width: 200px;
-  }
-
-  .answer {
-    width: 40vh;
-  }
-
-  .answers-container {
-    align-items: center;
-  }
-
-}
-
 @media screen and ( max-width : 480px ) {
   
   .answer {
