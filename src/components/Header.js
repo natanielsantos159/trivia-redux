@@ -12,25 +12,38 @@ class Header extends Component {
 
     this.state = {
       picture: '',
+      email: '',
+      name: '',
     };
 
     this.getGravatarPicture = this.getGravatarPicture.bind(this);
+    this.getUserInfo = this.getUserInfo.bind(this);
   }
 
   componentDidMount() {
-    this.getGravatarPicture();
+    this.getUserInfo();
+  }
+
+  getUserInfo() {
+    const { email, name } = JSON.parse(localStorage.getItem('trivia-user')) || {};
+    if (email && name) {
+      this.setState({ email, name }, this.getGravatarPicture);
+    } else {
+      const { email: emailProps, name: nameProps } = this.props;
+      this.setState({ email: emailProps, name: nameProps }, this.getGravatarPicture);
+    }
   }
 
   getGravatarPicture() {
-    const { email } = this.props;
+    const { email } = this.state;
     const hash = md5(email).toString();
     const picture = `https://www.gravatar.com/avatar/${hash}`;
     this.setState({ picture });
   }
 
   render() {
-    const { name, score } = this.props;
-    const { picture } = this.state;
+    const { name, picture } = this.state;
+    const { score } = this.props;
 
     return (
       <section className="top-container">
