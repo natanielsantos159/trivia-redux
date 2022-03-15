@@ -1,10 +1,9 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Login from './pages/Login';
 import Game from './pages/Game';
 import Feedback from './pages/Feedback';
-import NewGame from './pages/NewGame';
 
 export default function App() {
   return (
@@ -14,9 +13,10 @@ export default function App() {
         path="/"
         render={ (routeProps) => {
           const isLogged = localStorage.getItem('trivia-user') !== null;
-          return isLogged ? <NewGame { ...routeProps } /> : <Login { ...routeProps } />;
+          return isLogged ? <Redirect to="/newgame" /> : <Login { ...routeProps } />;
         } }
       />
+      <Route path="/newgame" component={ NewGame } />
       <Route path="/game" component={ Game } />
       <Route path="/feedback" component={ Feedback } />
     </Switch>
