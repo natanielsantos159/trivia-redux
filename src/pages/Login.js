@@ -15,7 +15,7 @@ class Login extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.toPlay = this.toPlay.bind(this);
+    this.toLogin = this.toLogin.bind(this);
   }
 
   handleChange({ target }) {
