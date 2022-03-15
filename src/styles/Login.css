@@ -17,20 +17,20 @@
   z-index: 0;
 }
 
-form {
+.login-section form {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
 }
 
-label {
+.login-section label {
   display: block;
   font-weight: 600;
   height: 30px;
   margin: 20px 30px;
 }
 
-input {
+.login-section input {
   background-color: #e1e5e6;
   border-radius: 5px;
   border-style: hidden;
@@ -41,11 +41,11 @@ input {
   width: 300px;
 }
 
-label input {
+.login-section label input {
   display: block;
 }
 
-input:focus {
+.login-section input:focus {
   border-color: black;
   border-style: inset;
 }
@@ -108,12 +108,12 @@ input:focus {
     top: 13vh;
   }
 
-  label {
+  .login-section label {
     height: auto;
     margin: auto;
   }
 
-  input {
+  .login-section input {
     width: 200px;
     margin-top: 5px;
     height: 29px;

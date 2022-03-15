@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchToken, setUserLogin } from '../actions';
+import { setUserLogin } from '../actions';
 import '../styles/Login.css';
 import logo from '../images/trivia.png';
 
@@ -23,12 +23,12 @@ class Login extends Component {
     this.setState({ [name]: value });
   }
 
-  async toPlay() {
-    const { tokenAPI, history, setUser } = this.props;
+  toLogin() {
+    const { history, setUser } = this.props;
     const { email, name } = this.state;
-    await tokenAPI();
     setUser({ email, name });
-    history.push('/game');
+    localStorage.setItem('trivia-user', JSON.stringify({ email, name }));
+    history.push('/newgame');
   }
 
   render() {
@@ -65,9 +65,9 @@ class Login extends Component {
               data-testid="btn-play"
               className="btn-play"
               disabled={ !(name && email) }
-              onClick={ this.toPlay }
+              onClick={ this.toLogin }
             >
-              Jogar
+              Entrar
             </button>
           </form>
         </section>
@@ -77,7 +77,6 @@ class Login extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  tokenAPI: () => dispatch(fetchToken()),
   setUser: (state) => dispatch(setUserLogin(state)),
 });
 
@@ -86,10 +85,6 @@ const mapStateToProps = (state) => ({
 });
 
 Login.propTypes = {
-  tokenAPI: PropTypes.func.isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func,
-  }).isRequired,
   setUser: PropTypes.func.isRequired,
 };
 

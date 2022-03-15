@@ -1,0 +1,39 @@
+.new-game-page .card-body {
+  padding: 40px 16px;
+  align-items: flex-start;
+  gap: 17px;
+}
+
+.new-game-page label {
+  display: flex;
+  gap: 10px;
+}
+
+.new-game-page select {
+  background-color: #412337;
+  color: white;
+  border-radius: 6px;
+  height: 29px;
+  padding: 5px;
+  border-style: none;
+  outline-style: none;
+}
+
+.question-type {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.question-type label {
+  gap: 2px;
+}
+
+.new-game-page input[type="radio"] {
+  accent-color: #c53b76;
+}
+
+.new-game-page .btn-play {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

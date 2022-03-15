@@ -19,3 +19,7 @@ html {
   }
 
 }
+
+label, select {
+  cursor: pointer;
+}

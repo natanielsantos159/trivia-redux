@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchTriviaQuestions } from '../actions';
+import { fetchToken, fetchTriviaQuestions } from '../actions';
 import '../styles/Game.css';
 import Header from '../components/Header';
 import QuestionCard from '../components/QuestionCard';
@@ -37,11 +37,14 @@ class Game extends Component {
   }
 
   componentDidMount() {
-    const { triviaApi } = this.props;
+    const { tokenAPI, triviaApi, triviaReturn } = this.props;
     const { state } = this.state;
+    if (!triviaReturn.results) {
+      tokenAPI().then(() => triviaApi()).then(this.getAnswers);
+    } else {
+      this.getAnswers();
+    }
 
-    triviaApi()
-      .then(() => this.getAnswers());
     this.handleQuestionTimer();
 
     localStorage.setItem('state', JSON.stringify(state));
@@ -192,7 +195,7 @@ class Game extends Component {
           </span>
           <button
             type="button"
-            className={`next-question-btn ${(timer === 0 || clicked) && 'visible'}`}
+            className={ `next-question-btn ${(timer === 0 || clicked) && 'visible'}` }
             data-testid="btn-next"
             onClick={ this.handleCounter }
           >
@@ -218,7 +221,8 @@ Game.propTypes = {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  triviaApi: () => dispatch(fetchTriviaQuestions()),
+  tokenAPI: () => dispatch(fetchToken()),
+  triviaApi: async () => dispatch(await fetchTriviaQuestions()),
 });
 
 const mapStateToProps = (state) => ({
