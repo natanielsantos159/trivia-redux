@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/trivia-redux/static/css/main.f66f68cd.chunk.css",
-    "main.js": "/trivia-redux/static/js/main.ad2fad32.chunk.js",
-    "main.js.map": "/trivia-redux/static/js/main.ad2fad32.chunk.js.map",
+    "main.css": "/trivia-redux/static/css/main.63b6d30e.chunk.css",
+    "main.js": "/trivia-redux/static/js/main.d853d95f.chunk.js",
+    "main.js.map": "/trivia-redux/static/js/main.d853d95f.chunk.js.map",
     "runtime-main.js": "/trivia-redux/static/js/runtime-main.b6a8bd90.js",
     "runtime-main.js.map": "/trivia-redux/static/js/runtime-main.b6a8bd90.js.map",
-    "static/js/2.715ac2d9.chunk.js": "/trivia-redux/static/js/2.715ac2d9.chunk.js",
-    "static/js/2.715ac2d9.chunk.js.map": "/trivia-redux/static/js/2.715ac2d9.chunk.js.map",
+    "static/js/2.5d9c7a66.chunk.js": "/trivia-redux/static/js/2.5d9c7a66.chunk.js",
+    "static/js/2.5d9c7a66.chunk.js.map": "/trivia-redux/static/js/2.5d9c7a66.chunk.js.map",
     "index.html": "/trivia-redux/index.html",
-    "precache-manifest.79fee7bf30e01278d34873608698c401.js": "/trivia-redux/precache-manifest.79fee7bf30e01278d34873608698c401.js",
+    "precache-manifest.604c1786fe0c8eac9160d0de5a9f5f9d.js": "/trivia-redux/precache-manifest.604c1786fe0c8eac9160d0de5a9f5f9d.js",
     "service-worker.js": "/trivia-redux/service-worker.js",
-    "static/css/main.f66f68cd.chunk.css.map": "/trivia-redux/static/css/main.f66f68cd.chunk.css.map",
-    "static/js/2.715ac2d9.chunk.js.LICENSE.txt": "/trivia-redux/static/js/2.715ac2d9.chunk.js.LICENSE.txt",
+    "static/css/main.63b6d30e.chunk.css.map": "/trivia-redux/static/css/main.63b6d30e.chunk.css.map",
+    "static/js/2.5d9c7a66.chunk.js.LICENSE.txt": "/trivia-redux/static/js/2.5d9c7a66.chunk.js.LICENSE.txt",
     "static/media/star-solid-black.svg": "/trivia-redux/static/media/star-solid-black.83dae189.svg",
     "static/media/star-solid.svg": "/trivia-redux/static/media/star-solid.2caa74cf.svg",
     "static/media/trivia.png": "/trivia-redux/static/media/trivia.466d153e.png"
   },
   "entrypoints": [
     "static/js/runtime-main.b6a8bd90.js",
-    "static/js/2.715ac2d9.chunk.js",
-    "static/css/main.f66f68cd.chunk.css",
-    "static/js/main.ad2fad32.chunk.js"
+    "static/js/2.5d9c7a66.chunk.js",
+    "static/css/main.63b6d30e.chunk.css",
+    "static/js/main.d853d95f.chunk.js"
   ]
 }
