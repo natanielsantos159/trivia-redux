@@ -1,6 +1,23 @@
 # Trivia
 <i> O objetivo era fazer um joguinho de quiz em React que consome a API do Trivia, utilizando Redux pra gerenciar o estado da aplicação. </i>
 <img src="./public/trivia.gif">
+
+# Habilidades
+
+Nesse projeto, você será capaz de:
+
+  - Criar um store Redux em aplicações React
+
+  - Criar reducers no Redux em aplicações React
+
+  - Criar actions no Redux em aplicações React
+
+  - Criar dispatchers no Redux em aplicações React
+
+  - Conectar Redux aos componentes React
+
+  - Criar actions assíncronas na sua aplicação React que faz uso de Redux.
+
 <h1>Instalação</h1>
 Caso queira rodá-lo na sua máquina, primeiro faça o git clone, depois instale as depêndencias necessárias.
 <br/>
