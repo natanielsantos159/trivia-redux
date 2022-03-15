@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Card from '../components/Card';
 import logo from '../images/trivia.png';
 import { categories } from '../data';
-import { fetchToken } from '../actions';
-
+import { fetchToken, fetchTriviaQuestions } from '../actions';
 import '../styles/NewGame.css';
 
 class NewGame extends Component {
@@ -17,15 +18,18 @@ class NewGame extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.toPlay = this.toPlay.bind(this);
   }
 
   handleChange({ target: { name, value } }) {
     this.setState({ [name]: value });
   }
 
-  toPlay() {
-    const { tokenAPI, history } = this.props;
-    tokenAPI();
+  async toPlay() {
+    const { amount, difficulty, category, type } = this.state;
+    const { triviaApi, tokenAPI, history } = this.props;
+    await tokenAPI();
+    await triviaApi({ amount, difficulty, category, type });
     history.push('/game');
   }
 
@@ -84,7 +88,7 @@ class NewGame extends Component {
                 />
               </label>
             </label>
-            <button className="btn-play" onClick={this.toPlay}>Jogar!</button>
+            <button className="btn-play" onClick={ this.toPlay }>Jogar!</button>
           </Card>
         </section>
       </main>
@@ -94,13 +98,14 @@ class NewGame extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   tokenAPI: () => dispatch(fetchToken()),
+  triviaApi: (options) => dispatch(fetchTriviaQuestions(options)),
 });
 
 const mapStateToProps = (state) => ({
   token: state.tokenReducer.token,
 });
 
-Login.propTypes = {
+NewGame.propTypes = {
   tokenAPI: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func,
