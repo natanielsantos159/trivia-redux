@@ -44,9 +44,19 @@ export const fetchTriviaQuestions = (options = defaultOptions) => async (dispatc
   try {
     const { amount, difficulty, category, type } = options;
     const { token } = localStorage;
-    const response = await fetch(`https://opentdb.com/api.php?amount=${amount}&token=${token}&difficulty=${difficulty}&type=${type}&${category !== 'any' && `&category=${category}`}`);
+    const response = await fetch(`https://opentdb.com/api.php?amount=${amount}&token=${token}&difficulty=${difficulty}&type=${type}&${category !== 'any' && `category=${category}`}&encode=url3986`);
     const data = await response.json();
-    return dispatch(setTriviaRequest(data));
+    const decodedData = data.results.map((current) => (
+      {
+        ...current,
+        category: decodeURIComponent(current.category),
+        question: decodeURIComponent(current.question),
+        incorrect_answers: current.incorrect_answers.map(decodeURIComponent),
+        correct_answer: decodeURIComponent(current.correct_answer),
+      }
+    ));
+
+    return dispatch(setTriviaRequest({ results: decodedData }));
   } catch (error) {
     dispatch(failedRequest(error));
   }

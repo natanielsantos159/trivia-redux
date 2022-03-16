@@ -4,7 +4,7 @@
 
 # Habilidades
 
-Nesse projeto, você será capaz de:
+Skills praticadas nesse projeto:
 
   - Criar um store Redux em aplicações React
 
