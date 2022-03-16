@@ -33,8 +33,7 @@
 }
 
 .trivia-logo {
-  height: 90px;
-  width: 261px;
+  width: 200px;
 }
 
 .timer-container {
@@ -65,7 +64,6 @@ progress::-webkit-progress-value {
 @media screen and ( max-width : 480px ) {
 
   .trivia-logo {
-    height: auto;
     width: 120px;
   }
 
@@ -100,10 +98,6 @@ progress::-webkit-progress-value {
 
 @media screen and ( min-width : 760px ) {
 
-  .trivia-logo {
-    height: auto;
-    width: 200px;
-  }
 
   .timer-container, progress {
     width: 40vh;
