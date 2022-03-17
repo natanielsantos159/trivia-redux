@@ -28,7 +28,7 @@ class Game extends Component {
       clicked: false,
     };
     this.gameTimer = null;
-    this.handleCounter = this.handleCounter.bind(this);
+    this.handleNextQuestion = this.handleNextQuestion.bind(this);
     this.shuffleArray = this.shuffleArray.bind(this);
     this.getAnswers = this.getAnswers.bind(this);
     this.handleQuestionTimer = this.handleQuestionTimer.bind(this);
@@ -156,13 +156,12 @@ class Game extends Component {
     clickedOne.removeAttribute('id');
   }
 
-  handleCounter() {
+  handleNextQuestion() {
     const { counter } = this.state;
-    const { history } = this.props;
+    const { history, triviaReturn: { results } } = this.props;
 
+    if (counter === results.length - 1) history.push('/feedback');
     this.handleAnimations();
-    const four = 4;
-    if (counter === four) history.push('/feedback');
 
     this.setState((prevState) => ({
       counter: prevState.counter + 1,
@@ -202,7 +201,7 @@ class Game extends Component {
             type="button"
             className={ `next-question-btn ${(timer === 0 || clicked) && 'visible'}` }
             data-testid="btn-next"
-            onClick={ this.handleCounter }
+            onClick={ this.handleNextQuestion }
           >
             Próxima
           </button>
