@@ -2,6 +2,7 @@ export const SET_LOGIN_VALUE = 'SET_LOGIN_VALUE';
 export const SET_TOKEN_VALUE = 'SET_TOKEN_VALUE';
 export const SET_TRIVIA_VALUE = 'SET_TRIVIA_VALUE';
 export const FAILED_REQUEST = 'FAILED_REQUEST';
+export const SET_OPTIONS = 'SET_OPTIONS';
 
 export const setUserLogin = (payload) => (
   {
@@ -21,6 +22,10 @@ export const setTokenRequest = (payload) => ({
   type: SET_TOKEN_VALUE, payload,
 });
 
+export const setOptions = (payload) => ({
+  type: SET_OPTIONS, payload,
+});
+
 export const fetchToken = () => async (dispatch) => {
   try {
     const response = await fetch('https://opentdb.com/api_token.php?command=request');
@@ -33,7 +38,7 @@ export const fetchToken = () => async (dispatch) => {
   }
 };
 
-const defaultOptions = {
+export const defaultOptions = {
   amount: 5,
   difficulty: 'easy',
   category: 'any',

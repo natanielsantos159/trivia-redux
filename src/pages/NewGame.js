@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Card from '../components/Card';
 import logo from '../images/trivia.png';
 import { categories } from '../data';
-import { fetchToken, fetchTriviaQuestions } from '../actions';
+import { fetchToken, fetchTriviaQuestions, setOptions } from '../actions';
 import '../styles/NewGame.css';
 
 class NewGame extends Component {
@@ -27,9 +27,11 @@ class NewGame extends Component {
 
   async toPlay() {
     const { amount, difficulty, category, type } = this.state;
-    const { triviaApi, tokenAPI, history } = this.props;
+    const { triviaApi, tokenAPI, history, setGameOptions } = this.props;
+    const options = { amount, difficulty, category, type };
     await tokenAPI();
-    await triviaApi({ amount, difficulty, category, type });
+    await triviaApi(options);
+    setGameOptions(options);
     history.push('/game');
   }
 
@@ -99,6 +101,7 @@ class NewGame extends Component {
 const mapDispatchToProps = (dispatch) => ({
   tokenAPI: () => dispatch(fetchToken()),
   triviaApi: (options) => dispatch(fetchTriviaQuestions(options)),
+  setGameOptions: (options) => dispatch(setOptions(options)),
 });
 
 const mapStateToProps = (state) => ({
