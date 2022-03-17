@@ -68,6 +68,8 @@
   content: "x";
   position: absolute;
   right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   width: 17px;
   height: 17px;
   margin: 0 15px;
@@ -78,7 +80,7 @@
   justify-content: center;
   align-items: center;
   box-shadow: 1px black;
-  box-shadow: 2px 2px 4px 1px rgb(0 0 0 / 20%);
+  box-shadow: 2px 2px 4px 1px #00000033;
 }
 
 .answers-container {
