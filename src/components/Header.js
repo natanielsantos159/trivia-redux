@@ -67,7 +67,7 @@ class Header extends Component {
           <span className="player-score">
             Pontos:
             {' '}
-            <span data-testid="header-score">{ score }</span>
+            <span data-testid="header-score" className="header-score">{ score }</span>
           </span>
         </header>
       </section>
