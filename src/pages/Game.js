@@ -33,7 +33,7 @@ class Game extends Component {
     this.getAnswers = this.getAnswers.bind(this);
     this.handleQuestionTimer = this.handleQuestionTimer.bind(this);
     this.handleAnswerClick = this.handleAnswerClick.bind(this);
-    this.handleCorrectChange = this.handleCorrectChange.bind(this);
+    this.handlePontuation = this.handlePontuation.bind(this);
   }
 
   componentDidMount() {
@@ -109,28 +109,19 @@ class Game extends Component {
     return timer;
   }
 
-  handleCorrectChange() {
+  handlePontuation() {
     const { timer, counter } = this.state;
     const { triviaReturn: { results }, email, name } = this.props;
 
-    let difficulty = 0;
-    if (results[counter].difficulty === 'easy') {
-      difficulty = 1;
-    }
-    if (results[counter].difficulty === 'medium') {
-      difficulty = 2;
-    }
-    if (results[counter].difficulty === 'hard') {
-      const three = 3;
-      difficulty = three;
-    }
-    const ten = 10;
+    const points = { easy: 1, medium: 2, hard: 3 };
+    const { difficulty } = results[counter];
+
     this.setState((prevState) => ({
       state: {
         player: {
           name,
           assertions: prevState.state.player.assertions + 1,
-          score: prevState.state.player.score + (ten + (timer * difficulty)),
+          score: prevState.state.player.score + (10 + (timer * points[difficulty])),
           gravatarEmail: email,
         },
       },
@@ -146,7 +137,7 @@ class Game extends Component {
       clearInterval(this.gameTimer);
     }
 
-    if (target.classList.contains('correct')) this.handleCorrectChange();
+    if (target.classList.contains('correct')) this.handlePontuation();
   }
 
   handleAnimations() {
