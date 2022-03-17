@@ -149,35 +149,37 @@ class Game extends Component {
     if (target.classList.contains('correct')) this.handleCorrectChange();
   }
 
-  handleCounter() {
-    const { counter } = this.state;
-    const { history } = this.props;
+  handleAnimations() {
     const questionCard = document.querySelector('.question-card');
     const answersContainer = document.querySelector('.answers-container');
-    const four = 4;
-
-    if (counter === four) {
-      history.push('/feedback');
-    }
 
     questionCard.style.display = 'none';
     answersContainer.style.display = 'none';
+
+    setTimeout(() => {
+      questionCard.style.display = 'block';
+      answersContainer.style.display = 'flex';
+    }, 100);
+
+    const clickedOne = document.querySelector('#clicked-one');
+    clickedOne.removeAttribute('id');
+  }
+
+  handleCounter() {
+    const { counter } = this.state;
+    const { history } = this.props;
+
+    this.handleAnimations();
+    const four = 4;
+    if (counter === four) history.push('/feedback');
 
     this.setState((prevState) => ({
       counter: prevState.counter + 1,
       clicked: false,
     }));
 
-    const clickedOne = document.querySelector('#clicked-one');
-    clickedOne.removeAttribute('id');
-
     clearInterval(this.gameTimer);
     this.handleQuestionTimer();
-
-    setTimeout(() => {
-      questionCard.style.display = 'block';
-      answersContainer.style.display = 'flex';
-    }, 100);
   }
 
   render() {
