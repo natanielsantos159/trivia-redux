@@ -5,8 +5,9 @@ import '../styles/Feedback.css';
 import starIcon from '../images/star-solid.svg';
 import starIconBlack from '../images/star-solid-black.svg';
 import Card from '../components/Card';
+import { connect } from 'react-redux';
 
-export default class Feedback extends Component {
+class Feedback extends Component {
   constructor() {
     super();
 
@@ -20,6 +21,7 @@ export default class Feedback extends Component {
     };
 
     this.getState = this.getState.bind(this);
+    this.getStars = this.getStars.bind(this);
   }
 
   componentDidMount() {
@@ -29,6 +31,17 @@ export default class Feedback extends Component {
   getState() {
     const state = JSON.parse(localStorage.getItem('state'));
     this.setState({ state });
+  }
+
+  getStars() {
+    const { state: { player: { assertions } } } = this.state;
+    const { amount } = this.props;
+    const starsAmount = Math.floor(assertions / (amount / 5));
+    console.log({ amount, starsAmount });
+    const starsArray = new Array(5)
+      .fill(<img src={ starIcon } alt="Star Icon" className="star" />, 0, starsAmount)
+      .fill(<img src={ starIconBlack } alt="Star Icon Black" className="star" />, starsAmount);
+    return starsArray;
   }
 
   render() {
@@ -41,18 +54,16 @@ export default class Feedback extends Component {
           <span className="feedback-total-score">
             { state.player.score }
           </span>
-          <div className="stars">
-            { new Array(5)
-              .fill(<img src={ starIcon } alt="Star Icon" className="star" />, 0, state.player.assertions)
-              .fill(<img src={ starIconBlack } alt="Star Icon Black" className="star" />, state.player.assertions) }
-          </div>
-          { state.player.assertions > 0 ? <p>
-            Você acertou
-            <span className="feedback-total-question">
-              { ` ${state.player.assertions} ` }
-            </span>
-            { state.player.assertions > 1 ? 'perguntas' : 'pergunta' }
-          </p> : 'Você não acertou nenhuma questão :('}
+          <div className="stars">{this.getStars()}</div>
+          { state.player.assertions > 0 ? (
+            <p>
+              Você acertou
+              <span className="feedback-total-question">
+                { ` ${state.player.assertions} ` }
+              </span>
+              { state.player.assertions > 1 ? 'perguntas' : 'pergunta' }
+            </p>
+          ) : 'Você não acertou nenhuma questão :('}
           <p
             className="feedback-text"
           >
@@ -72,3 +83,9 @@ export default class Feedback extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  amount: state.gameReducer.gameOptions.amount,
+});
+
+export default connect(mapStateToProps)(Feedback);
