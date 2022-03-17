@@ -141,6 +141,7 @@ class Game extends Component {
     const { clicked } = this.state;
 
     if (!clicked) {
+      target.id = 'clicked-one';
       this.setState({ clicked: true });
       clearInterval(this.gameTimer);
     }
@@ -166,6 +167,9 @@ class Game extends Component {
       counter: prevState.counter + 1,
       clicked: false,
     }));
+
+    const clickedOne = document.querySelector('#clicked-one');
+    clickedOne.removeAttribute('id');
 
     clearInterval(this.gameTimer);
     this.handleQuestionTimer();

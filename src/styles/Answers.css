@@ -12,6 +12,11 @@
   padding: 5px;
   transition: all 1s;
   width: 300px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 .answer:disabled {
@@ -57,6 +62,23 @@
   animation: move 600ms;
   animation-delay: 400ms;
   animation-fill-mode: backwards;
+}
+
+.answer.incorrect.clicked#clicked-one::after {
+  content: "x";
+  position: absolute;
+  right: 0;
+  width: 17px;
+  height: 17px;
+  margin: 0 15px;
+  background-color: #f54040;
+  padding: 3px;
+  display: flex;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 1px black;
+  box-shadow: 2px 2px 4px 1px rgb(0 0 0 / 20%);
 }
 
 .answers-container {
