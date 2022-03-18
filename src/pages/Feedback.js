@@ -37,7 +37,6 @@ class Feedback extends Component {
     const { state: { player: { assertions } } } = this.state;
     const { amount } = this.props;
     const starsAmount = Math.floor(assertions / (amount / 5));
-    console.log({ amount, starsAmount });
     const starsArray = new Array(5)
       .fill(<img src={ starIcon } alt="Star Icon" className="star" />, 0, starsAmount)
       .fill(<img src={ starIconBlack } alt="Star Icon Black" className="star" />, starsAmount);

@@ -64,6 +64,10 @@
   animation-fill-mode: backwards;
 }
 
+.answer.incorrect.clicked#clicked-one {
+  animation: shake 0.42s ease;
+}
+
 .answer.incorrect.clicked#clicked-one::after {
   content: "x";
   position: absolute;
@@ -79,7 +83,6 @@
   border-radius: 50%;
   justify-content: center;
   align-items: center;
-  box-shadow: 1px black;
   box-shadow: 2px 2px 4px 1px #00000033;
 }
 
@@ -104,7 +107,7 @@
 }
 
 @media screen and ( max-width : 480px ) {
-  
+
   .answer {
     margin-bottom: 12px;
   }
@@ -125,4 +128,23 @@
     align-items: center;
   }
 
+}
+
+@keyframes shake {
+
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0) rotate(-1deg);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0) rotate(2deg);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0) rotate(-3deg);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0) rotate(3deg);
+  }
 }
